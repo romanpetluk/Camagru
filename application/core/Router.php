@@ -2,6 +2,7 @@
 
 namespace application\core;
 
+use application\core\View;
 
 class Router {
 
@@ -10,7 +11,6 @@ class Router {
 
     function __construct()
     {
-        echo 'I class Router';
         $arr = require 'application/config/routes.php';
         foreach ($arr as $key => $val) {
             $this->add($key, $val);
@@ -34,9 +34,7 @@ class Router {
     }
 
     public function run() {
-         echo 'start <br>';
          if ($this->match()) {
-
              $path = 'application\controllers\\' . ucfirst($this->params['controller'] . 'Controller');
              if (class_exists($path)) {
                  $action = $this->params['action'] . 'Action';
@@ -44,13 +42,13 @@ class Router {
                      $controller = new $path($this->params);
                      $controller->$action();
                  } else {
-                     echo 'ERROR action no find:' . $action;
+                     View::errorCode(404);
                  }
              } else {
-                 echo 'ERROR 403 controller no find: '. "$path";
+                 View::errorCode(404);
              }
          } else {
-             echo 'ERROR 404';
+             View::errorCode(404);
          }
     }
 }

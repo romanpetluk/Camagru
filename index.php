@@ -15,6 +15,4 @@ spl_autoload_register(function($class) {
 session_start();
 
 $router = new Router();
-echo '<br>';
-
 $router->run();
