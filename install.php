@@ -111,4 +111,9 @@ public static function query($sql, $params = []) {
        return $result->fetchColumn();
    }
 prepare, execute, bindvalue
+
  */
+
+
+
+// PDO :: ERRMODE_EXCEPTION //pdf
