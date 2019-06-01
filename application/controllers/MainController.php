@@ -11,12 +11,18 @@ class MainController extends Controller
 {
 
     public function indexAction() {
+        $this->view->render('indexActionPAGE');
+    }
 
-        $result = $this->model->getNews();
-        $vars = [
-            'news' => $result,
-        ];
+    public function aboutAction() {
+        $this->view->render('aboutActionPAGE');
+    }
 
-        $this->view->render('PAGE', $vars);
+    public function contactAction() {
+        $this->view->render('contactActionPAGE');
+    }
+
+    public function postAction() {
+        $this->view->render('postActionPAGE');
     }
 }

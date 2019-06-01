@@ -2,16 +2,21 @@
 
 return [
 	'all' => [
-		'index'
+		//
 	],
 	'authorize' => [
-		'register',
+		'logout',
+		'profile',
 	],
 	'guest' => [
+		'register',
 		'login',
+		'recovery',
+		'confirm',
+		'reset',
 	],
 	'admin' => [
-		'login'
+
 	],
 ];
 

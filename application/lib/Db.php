@@ -4,20 +4,43 @@ namespace application\lib;
 
 use PDO;
 
+
+
 class Db
 {
+
     protected $db;
 
     public function __construct() {
-        $config = require 'application/config/db.php';
-        $this->db = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'] . '', $config['user'], $config['password']);
+        try {
+            $config = require 'application/config/database.php';
+            require_once 'application/config/setup.php';
+            $this->db = new PDO('mysql:host=' . $config['host'] . ';dbname=' . '' . '', $config['user'], $config['password']);
+            $this->db->query('USE ' . $config['dbname']);
+        } catch (\PDOException $e) {
+            die("DB ERROR: " . $e->getMessage());
+        }
     }
 
     public function query($sql, $params = []) {
         $stmt = $this->db->prepare($sql);
         if (!empty($params)) {
             foreach ($params as $key => $val) {
-                $stmt->bindValue(':' . $key, $val);
+                if (is_int($val)) {
+                    $type = PDO::PARAM_INT;
+                } else {
+                    $type = PDO::PARAM_STR;
+                }
+                $stmt->bindValue(':' . $key, $val, $type);
+//                echo 'key = ';
+//                var_dump($key);
+//                echo '<br>';
+//                echo 'val = ';
+//                var_dump($val);
+//                echo '<br>';
+//                echo 'type = ';
+//                var_dump($type);
+//                echo '<br>';
             }
         }
         $stmt->execute();
@@ -34,6 +57,9 @@ class Db
         return $result->fetchColumn();
     }
 
+    public function lastInsertId() {
+        return $this->db->lastInsertId();
+    }
 
 }
 

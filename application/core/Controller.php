@@ -37,11 +37,11 @@ abstract  class Controller {
             return true;
         }
 
-        elseif (isset($_SESSION['authorize']['id']) && $this->isAcl('authorize')) {
+        elseif (isset($_SESSION['account']['id']) && $this->isAcl('authorize')) {
             return true;
         }
 
-        elseif (!isset($_SESSION['authorize']['id']) && $this->isAcl('guest')) {
+        elseif (!isset($_SESSION['account']['id']) && $this->isAcl('guest')) {
             return true;
         }
 
