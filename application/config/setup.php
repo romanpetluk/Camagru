@@ -6,21 +6,44 @@ use application\lib\Db;
 $dbh = new Db();
 $dbh->query('CREATE DATABASE IF NOT EXISTS ' . 'camagru'. '; USE camagru');
 
-$sql = "CREATE TABLE IF NOT EXISTS accounts (
-    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(50) NOT NULL,
-    login VARCHAR(30) NOT NULL,
-    password VARCHAR(200) NOT NULL,
-    token VARCHAR(30) NOT NULL,
-    status INT(1) NOT NULL
-    )";
+$sql = "CREATE TABLE IF NOT EXISTS `accounts` (
+        `user_id` INT AUTO_INCREMENT,
+        `email` VARCHAR(254) NOT NULL,
+        `login` VARCHAR(8) NOT NULL,
+        `password` VARCHAR(256) NOT NULL,
+        `token` VARCHAR(30) NOT NULL,
+        `status` INT(1) NOT NULL,
+        PRIMARY KEY (`user_id`));
+                     
+        CREATE TABLE IF NOT EXISTS `gallery` (
+        `image_id` INT AUTO_INCREMENT,
+        `user_id` INT NOT NULL,
+        `creation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `path` VARCHAR(256) NOT NULL,
+        PRIMARY KEY (`image_id`),
+        FOREIGN KEY (`user_id`) REFERENCES accounts(`user_id`));
+        
+        CREATE TABLE IF NOT EXISTS `likes` (
+        `like_id` INT AUTO_INCREMENT,
+        `user_id` INT NOT NULL,
+         `image_id` INT NOT NULL,
+         PRIMARY KEY (`like_id`),
+         FOREIGN KEY (`user_id`) REFERENCES accounts(`user_id`),
+         FOREIGN KEY (`image_id`) REFERENCES gallery(`image_id`));
+         ";
 $dbh->query($sql);
 
 //$dbh->query("INSERT INTO accounts VALUES  (null, 'email', 'login', '311331', 0)");
 
 
 
-
+//CREATE TABLE IF NOT EXISTS accounts (
+//    `user_id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+//                                `email` VARCHAR(50) NOT NULL,
+//                                `login` VARCHAR(30) NOT NULL,
+//                                `password` VARCHAR(200) NOT NULL,
+//                                `token` VARCHAR(30) NOT NULL,
+//                                `status` INT(1) NOT NULL
 
 //class Setup {
 //

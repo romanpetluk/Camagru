@@ -10,7 +10,7 @@
 <form action="/account/profile" method="post">
     <label>login</label>
     <BR>
-    <input type="text" value="<?php echo $_SESSION['account']['login']; ?>" name="login" disabled>
+    <input type="text" value="<?php echo $_SESSION['account']['login']; ?>" name="login">
     <BR>
     <label>email</label>
     <BR>

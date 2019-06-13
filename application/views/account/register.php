@@ -7,5 +7,4 @@
     <p>password</p>
     <p><input type="password" name="password"></p>
     <p><button type="submit" name="enter">register</button></p>
-    <p><a href="/account/login">login</a></p>
 </form>

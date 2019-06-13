@@ -5,6 +5,5 @@
     <p>password</p>
     <p><input type="password" name="password"></p>
     <p><button type="submit" name="enter">login</button></p>
-    <p><a href="/account/register">register</a></p>
     <p><a href="/account/recovery">recovery</a></p>
 </form>

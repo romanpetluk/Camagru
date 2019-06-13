@@ -44,4 +44,15 @@
             'action' => 'profile',
         ],
 
+        //PhotoController
+        'photo/gallery' => [
+            'controller' => 'photo',
+            'action' => 'gallery',
+        ],
+
+        'photo/selfie' => [
+            'controller' => 'photo',
+            'action' => 'selfie',
+        ],
+
     ];

@@ -13,11 +13,23 @@ class AccountController extends Controller {
 
     //register
 
-//    public function loginAction() {
-//        $this->view->render('Enter');
-//    }
+    public function registerAction() {
+        if (!empty($_POST)) {
+            if (!$this->model->validate(['email', 'login', 'password'], $_POST)) {
+                $this->view->message('error', $this->model->error);
+            }
+            elseif ($this->model->checkEmailExists($_POST['email'])) {
+                $this->view->message('error', 'this email is used');
+            }
+            elseif ($this->model->checkLoginExists($_POST['login'])) {
+                $this->view->message('error', 'this login is used');
+            }
+            $this->model->register($_POST);
 
-
+            $this->view->message('success', 'complete registration, confirm email');
+        }
+        $this->view->render('Register');
+    }
 
     public function confirmAction() {
         $this->route['token'] = str_replace('/' .$this->route['controller']. '/' .$this->route['action'] . '/', '', $_SERVER['REQUEST_URI']);
@@ -28,24 +40,6 @@ class AccountController extends Controller {
 
         $this->view->render('Registration is complete');
 
-    }
-
-    public function registerAction() {
-        if (!empty($_POST)) {
-            if (!$this->model->validate(['email', 'login', 'password'], $_POST)) {
-                $this->view->message('error', $this->model->error);
-            }
-            elseif ($this->model->checkEmailExists($_POST['email'])) {
-                $this->view->message('error', 'this email is used');
-            }
-            elseif (!$this->model->checkLoginExists($_POST['login'])) {
-                $this->view->message('error', $this->model->error);
-            }
-            $this->model->register($_POST);
-
-            $this->view->message('success', 'complete registration, confirm email');
-        }
-        $this->view->render('Register');
     }
 
     //login
@@ -73,12 +67,18 @@ class AccountController extends Controller {
     public function profileAction() {
 
         if (!empty($_POST)) {
+
+            //var_dump($_SESSION['account']);
             if (!$this->model->validate(['email', 'login'], $_POST)) {
                 $this->view->message('error', $this->model->error);
             }
-            $id = $this->model->checkEmailExists($_POST['email']);
-            if ($id and $id != $_SESSION['account']['id']) {
+            $user_id = $this->model->checkEmailExists($_POST['email']);
+            if ($user_id and $user_id != $_SESSION['account']['user_id']) {
                 $this->view->message('error', 'this email is used');
+            }
+            $user_id = $this->model->checkLoginExists($_POST['login']);
+            if ($user_id and $user_id != $_SESSION['account']['user_id']) {
+                $this->view->message('error', 'this login is used');
             }
             if (!empty($_POST['password']) and !$this->model->validate(['password'], $_POST)) {
                 $this->view->message('error', $this->model->error);

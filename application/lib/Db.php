@@ -32,15 +32,6 @@ class Db
                     $type = PDO::PARAM_STR;
                 }
                 $stmt->bindValue(':' . $key, $val, $type);
-//                echo 'key = ';
-//                var_dump($key);
-//                echo '<br>';
-//                echo 'val = ';
-//                var_dump($val);
-//                echo '<br>';
-//                echo 'type = ';
-//                var_dump($type);
-//                echo '<br>';
             }
         }
         $stmt->execute();

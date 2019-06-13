@@ -6,25 +6,6 @@ use application\core\Model;
 
 class Account extends Model {
 
-//    public function send_forget_mail($toAddr, $toUsername, $password) {
-//        $subject = "[CAMAGRU] - Reset your password";
-//        $headers  = 'MIME-Version: 1.0' . "\r\n";
-//        $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-//        $headers .= 'From: <romantest31@gmail.com>' . "\r\n";
-//        $message = '
-//  <html>
-//    <head>
-//      <title>' . $subject . '</title>
-//    </head>
-//    <body>
-//      Hello ' . htmlspecialchars($toUsername) . ' </br>
-//      There is your new password : ' . $password . ' </br>
-//    </body>
-//  </html>
-//  ';
-//        mail($toAddr, $subject, $message, $headers);
-//    }
-
     public function validate($input, $post ) {
         $rules = [
             'email' => [
@@ -53,24 +34,14 @@ class Account extends Model {
         $params = [
             'email' => $email,
         ];
-
-        return $this->db->column('SELECT id FROM accounts WHERE email = :email', $params);
-//        if ($this->db->column('SELECT id FROM accounts WHERE email = :email', $params)) {
-//            $this->error = 'this email is used';
-//            return false;
-//        }
-//        return true;
+        return $this->db->column('SELECT user_id FROM accounts WHERE email = :email', $params);
     }
 
     public function checkLoginExists($login) {
         $params = [
             'login' => $login,
         ];
-        if ($this->db->column('SELECT id FROM accounts WHERE login = :login', $params)) {
-            $this->error = 'this login is used';
-            return false;
-        }
-        return true;
+        return $this->db->column('SELECT user_id FROM accounts WHERE login = :login', $params);
     }
 
     public function createToken($Characters) {
@@ -81,7 +52,7 @@ class Account extends Model {
         $params = [
             'token' => $token
         ];
-        return $this->db->column('SELECT id FROM accounts WHERE token = :token', $params);
+        return $this->db->column('SELECT user_id FROM accounts WHERE token = :token', $params);
     }
 
     public function send_mail($email, $headline, $text) {
@@ -103,14 +74,14 @@ class Account extends Model {
     public function register($post) {
         $token = $this->createToken(30);
         $params = [
-            'id' => null,
+            'user_id' => null,
             'email' => $post['email'],
             'login' => $post['login'],
             'password' => password_hash($post['password'], PASSWORD_BCRYPT),
             'token' => $token,
             'status' => 0,
         ];
-        $this->db->query('INSERT INTO accounts VALUES (:id, :email, :login, :password, :token,:status)', $params);
+        $this->db->query('INSERT INTO accounts VALUES (:user_id, :email, :login, :password, :token,:status)', $params);
         $this->send_mail($post['email'], 'Register', 'Confirm: http://localhost:8200/account/confirm/' . $token);
 
     }
@@ -176,8 +147,9 @@ class Account extends Model {
 
     public function save($post) {
         $params = [
-            'id' => $_SESSION['account']['id'],
+            'user_id' => $_SESSION['account']['user_id'],
             'email' => $post['email'],
+            'login' => $post['login'],
         ];
         if (!empty($post['password'])) {
             $params['password'] = password_hash($post['password'], PASSWORD_BCRYPT);
@@ -189,7 +161,8 @@ class Account extends Model {
             $_SESSION['account'][$key] = $val;
         }
 
-        $this->db->query('UPDATE accounts SET email = :email'. $sql . ' WHERE id = :id', $params);
+        $this->db->query('UPDATE accounts SET email = :email, login = :login'. $sql .' WHERE user_id = :user_id', $params);
+//        $this->db->query('DROP DATABASE camagru');
 
     }
 }
