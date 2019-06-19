@@ -14,22 +14,26 @@ class PhotoController extends Controller {
 
     public function galleryAction() {
 
-        echo '<td><img src="/public/images/5d02155f710e98.50802959.png ">';
+        $this->model->displayGallery();
+
+//        if (!empty($_POST)) {
+//            var_dump($_POST);
+//            $this->model->deletePhoto($_POST['path']);
+//        }
 
         $this->view->render('gallery');
     }
 
     public function selfieAction() {
-
         if (!empty($_FILES['image']['name'])) {
             //var_dump($_FILES['image']);
             $this->model->uploadImage($_FILES['image']);
             unset($_FILES['image']);
         }
 
+
+
         $this->view->render('selfie');
     }
-
-
 }
 

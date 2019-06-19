@@ -8,7 +8,7 @@ class AccountController extends Controller {
 
     public function __construct($route) {
         parent::__construct($route);
-        $this->view->layout = 'account';
+        //$this->view->layout = 'account';
     }
 
     //register
@@ -25,6 +25,7 @@ class AccountController extends Controller {
                 $this->view->message('error', 'this login is used');
             }
             $this->model->register($_POST);
+            //var_dump($_POST);
 
             $this->view->message('success', 'complete registration, confirm email');
         }

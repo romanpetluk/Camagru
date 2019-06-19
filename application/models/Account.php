@@ -81,7 +81,8 @@ class Account extends Model {
             'token' => $token,
             'status' => 0,
         ];
-        $this->db->query('INSERT INTO accounts VALUES (:user_id, :email, :login, :password, :token,:status)', $params);
+        $this->db->query('INSERT INTO accounts VALUES (:user_id, :email, :login, :password, :token, :status)', $params);
+
         $this->send_mail($post['email'], 'Register', 'Confirm: http://localhost:8200/account/confirm/' . $token);
 
     }

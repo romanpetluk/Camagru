@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title><?php echo "$title"; ?></title>
-</head>
-<body>
 
 <H2>PROFILE</H2>
 <form action="/account/profile" method="post">
@@ -22,5 +15,3 @@
     <BR>
     <button type="submit">save</button>
 </form>
-</body>
-</html>

@@ -1,0 +1,132 @@
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+li{
+    list-style: none;
+    display: flex;
+}
+
+a{
+    text-decoration: none;
+}
+
+header{
+    background: gainsboro;
+}
+.header-container{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo{
+    display: flex;
+}
+
+.header-container a{
+    color: #000;
+    font-size: 25px;
+    margin-right: 100px;
+    padding: 25px 5px;
+}
+
+.header-container a:hover{
+    background: #ffea00;
+}
+
+#menu-checkbox{
+    display: none;
+}
+
+ul{
+    display: flex;
+    justify-content: space-between;
+}
+
+nav{
+    margin-top: 30px;
+}
+
+@media screen and ( max-width: 420px) {
+    .header-container {
+        width: 100%;
+        display: flex;
+    }
+
+    .main-menu {
+        display: none;
+    }
+
+    .main-menu li {
+        width: 100%;
+        display: block;
+        font-size: 12px;
+    }
+
+    main-menu a {
+        display: block;
+        padding: 8px;
+
+    }
+
+    .toggle-button {
+        text-align: center;
+        display: block;
+        cursor: pointer;
+        color: #000;
+        /*margin-bottom: 20px;*/
+    }
+
+    .toggle-button:after {
+        content: attr(data-open);
+        display: block;
+    }
+
+    #menu-checkbox:checked + nav[role="navigation"] .main-menu {
+        display: block;
+    }
+
+    #menu-checkbox:checked + nav[role="navigation"] .toggle-button:after {
+        content: attr(data-close );
+    }
+
+    .header-container a{
+        font-size: 15px;
+        margin-right: -65px;
+        padding: 5px 5px;
+    }
+
+    .main-menu{
+        position: relative;
+        top: 20px;
+        right: 50px;
+    }
+}
+
+@media screen and ( max-width: 768px) {
+    .header-container {
+        width: 100%;
+        display: flex;
+    }
+
+    .toggle-button {
+        text-align: center;
+        display: block;
+        cursor: pointer;
+        color: #000;
+    }
+
+    .header-container a {
+        font-size: 20px;
+        margin-right: 50px;
+        margin-top: 20px;
+        padding: 5px 5px;
+    }
+}

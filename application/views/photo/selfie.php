@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title><?php echo "$title"; ?></title>
-</head>
 
-
-<body>
 
 <video id="video" width="640" height="480" autoplay></video>
 <button id="snap">Snap Photo</button>
@@ -53,9 +45,3 @@
         <input type="file" name="image">
         <input type="submit">
     </form>
-
-
-
-
-</body>
-</html>

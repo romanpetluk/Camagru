@@ -22,6 +22,17 @@
             <p><button type="submit" name="enter">logout</button></p>
         </a>
     </li>
+    <li>
+        <a href="/photo/selfie">
+            <p><button type="submit" name="enter">selfie</button></p>
+        </a>
+
+    </li>
+    <li>
+        <a href="/photo/gallery">
+            <p><button type="submit" name="enter">gallery</button></p>
+        </a>
+    </li>
 <?php else: ?>
     <li>
         <a href="/account/login">

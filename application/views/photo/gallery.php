@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title><?php echo "$title"; ?></title>
-</head>
-<body>
-<a href="/account/login">sing in</a>
-
-<?php echo '<img src="/public/images/5d010e9d944ea7.04919553.pdf">'; ?>
-
-
-
-
-</body>
-</html>
+<?php
+//$data = $this->db->row("SELECT * FROM `gallery` ORDER BY `user_id`");
+//echo "<form action='/photo/gallery' method='post'";
+//foreach ($data as $key => $val) {
+//$image = '<img src="' . $val['path'] . '" width="" height="150">';
+//$hidden = '<input type="hidden" name="path" value="' . $val['path'] . '">';
+//$delete = '<input type="submit" name="delete" value="delete">';
+//echo $image;
+//echo $hidden;
+//echo $delete;
+//}
+//echo "</form>";
