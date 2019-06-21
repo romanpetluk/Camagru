@@ -12,10 +12,14 @@
 </head>
 <body>
 
+<section id="maket">
+    <?php require_once "Application/views/layouts/header.php" ?>
 
-<?php require_once "Application/views/layouts/header.php" ?>
+    <?php echo "$content"; ?>
 
-<?php echo "$content"; ?>
+</section>
+
+<!--<div id="rasporka"></div>-->
 
 <?php require_once "Application/views/layouts/footer.php" ?>
 
