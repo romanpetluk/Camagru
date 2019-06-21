@@ -14,26 +14,44 @@ class PhotoController extends Controller {
 
     public function galleryAction() {
 
-        $this->model->displayGallery();
+        $photo = $this->model->displayGallery();
 
-//        if (!empty($_POST)) {
-//            var_dump($_POST);
-//            $this->model->deletePhoto($_POST['path']);
-//        }
+//        var_dump($photo);
+        $vars = [
+            'photo' => $photo,
+        ];
 
-        $this->view->render('gallery');
+        if (!empty($_POST['image_id'])) {
+            $this->model->countLike($_POST['image_id']);
+            if ($this->model->checkLike($_POST['image_id'])) {
+                $this->model->addLike($_POST['image_id']);
+            } else {
+                $this->model->deleteLike($_POST['image_id']);
+            }
+            unset($_POST['image_id']);
+        }
+
+
+        $this->view->render('gallery', $vars);
     }
 
     public function selfieAction() {
         if (!empty($_FILES['image']['name'])) {
-            //var_dump($_FILES['image']);
             $this->model->uploadImage($_FILES['image']);
             unset($_FILES['image']);
         }
 
+        $photo = $this->model->displayGallery();
+        $vars = [
+            'photo' => $photo,
+        ];
 
+        if (!empty($_POST['path'])) {
+            $this->model->deletePhoto($_POST['path']);
+            unset($_POST['path']);
+        }
 
-        $this->view->render('selfie');
+        $this->view->render('selfie', $vars);
     }
 }
 

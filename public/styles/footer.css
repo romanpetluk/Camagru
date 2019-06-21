@@ -1,16 +1,37 @@
+body, html{
+    margin:0px;
+    padding:0px;
+    height: 100%;
+}
 
-.foo {
-    display: flex;
+#maket{
+    /*width: 300px;*/
+    margin:0 auto;
+    min-height: 100%;
+}
+
+footer{
     background: gainsboro;
-    margin: 0 auto;
-
+    clear:both;
+    height: 50px;
+    margin-top: -50px;
 }
 
-.contacts{
-    display: flex;
-    width: 50%;
+#rasporka{
+    height: 50px;
 }
 
-.author{
-    display: flex;
-}
+/*.foo {*/
+/*    background: gainsboro;*/
+/*    margin: 0 auto;*/
+
+/*}*/
+
+/*.contacts{*/
+/*    display: flex;*/
+/*    width: 50%;*/
+/*}*/
+
+/*.author{*/
+/*    display: flex;*/
+/*}*/

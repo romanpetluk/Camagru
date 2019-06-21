@@ -45,3 +45,12 @@
         <input type="file" name="image">
         <input type="submit">
     </form>
+
+
+<?php foreach ($photo as $key => $val): ?>
+    <p><img src="<?php echo $val['path'] ?>" width="" height="150"></p>
+    <form action='/photo/selfie' method='post'
+    <p><input type="hidden" name="path" value="<?php echo $val['path'] ?>">
+        <input type="submit" name="delete" value="delete"></p>
+    </form>
+<?php endforeach; ?>
