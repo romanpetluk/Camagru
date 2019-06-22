@@ -8,20 +8,25 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/public/styles/header.css">
     <link rel="stylesheet" href="/public/styles/footer.css">
+    <link rel="stylesheet" href="/public/styles/login.css">
+    <link rel="stylesheet" href="/public/styles/register.css">
+    <link rel="stylesheet" href="/public/styles/profile.css">
 
 </head>
 <body>
 
 <section id="maket">
-    <?php require_once "Application/views/layouts/header.php" ?>
+    <?php require_once "application/views/layouts/header.php" ?>
 
     <?php echo "$content"; ?>
 
+    <div id="rasporka"></div>
+
 </section>
 
-<!--<div id="rasporka"></div>-->
 
-<?php require_once "Application/views/layouts/footer.php" ?>
+
+<?php require_once "application/views/layouts/footer.php" ?>
 
 
 </body>

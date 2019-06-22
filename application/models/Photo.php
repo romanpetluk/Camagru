@@ -7,6 +7,8 @@ use application\core\Model;
 
 class Photo extends Model {
 
+//    const SHOW_BY_DEFAULT = 5;
+
     public function uploadImage($fileUpload) {
         if (isset($fileUpload)) {
             $errors = array();
@@ -21,8 +23,8 @@ class Photo extends Model {
             if (!in_array($fileExt, $availableExtensions)){
                 $errors[] = "Invalid file format";
             }
-            if($fileSize >2097152) {
-                $errors[] = 'file > 2 mb';
+            if($fileSize >5242880) {
+                $errors[] = 'file > 5 mb';
             }
 
             if (empty($errors)) {
@@ -35,7 +37,9 @@ class Photo extends Model {
                     'path' => '/' . $targetDir,
                 ];
                 $this->db->query('INSERT INTO gallery VALUES (:image_id, :user_id, NOW(), :path)', $params);
-                move_uploaded_file($fileTmpName, $targetDir);
+//                move_uploaded_file($fileTmpName, $targetDir);
+                echo 'ASD';
+                move_uploaded_file($fileTmpName, $_SERVER['DOCUMENT_ROOT'] . '/' . $targetDir);
                 echo 'success';
             } else {
                 foreach ($errors as $val) {
@@ -44,6 +48,13 @@ class Photo extends Model {
             }
         }
     }
+
+//    public static function getLatestPhoto($count = self::SHOW_BY_DEFAULT) {
+//        $count = intval($count);
+//
+//
+//
+//    }
 
     public function displayGallery() {
 

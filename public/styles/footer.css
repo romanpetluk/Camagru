@@ -21,17 +21,17 @@ footer{
     height: 50px;
 }
 
-/*.foo {*/
-/*    background: gainsboro;*/
-/*    margin: 0 auto;*/
+.foo {
+    background: gainsboro;
+    margin: 0 auto;
 
-/*}*/
+}
 
-/*.contacts{*/
-/*    display: flex;*/
-/*    width: 50%;*/
-/*}*/
+.contacts{
+    display: flex;
+    width: 50%;
+}
 
-/*.author{*/
-/*    display: flex;*/
-/*}*/
+.author{
+    display: flex;
+}

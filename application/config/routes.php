@@ -3,9 +3,14 @@
     return [
 
         //MainController
+//        '' => [
+//            'controller' => 'main',
+//            'action' => 'index',
+//        ],
+
         '' => [
-            'controller' => 'main',
-            'action' => 'index',
+            'controller' => 'photo',
+            'action' => 'gallery',
         ],
 
         //AccountController

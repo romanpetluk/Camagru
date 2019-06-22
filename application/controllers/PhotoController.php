@@ -16,18 +16,22 @@ class PhotoController extends Controller {
 
         $photo = $this->model->displayGallery();
 
-//        var_dump($photo);
         $vars = [
             'photo' => $photo,
         ];
 
         if (!empty($_POST['image_id'])) {
             $this->model->countLike($_POST['image_id']);
-            if ($this->model->checkLike($_POST['image_id'])) {
-                $this->model->addLike($_POST['image_id']);
+            if (!empty($_SESSION['account'])) {
+                if ($this->model->checkLike($_POST['image_id'])) {
+                    $this->model->addLike($_POST['image_id']);
+                } else {
+                    $this->model->deleteLike($_POST['image_id']);
+                }
             } else {
-                $this->model->deleteLike($_POST['image_id']);
+                $this->view->redirect('account/login');
             }
+
             unset($_POST['image_id']);
         }
 

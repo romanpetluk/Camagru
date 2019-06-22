@@ -3,7 +3,7 @@
 <video id="video" width="640" height="480" autoplay></video>
 <button id="snap">Snap Photo</button>
 <canvas id="canvas" width="640" height="480"></canvas>
-<button id="save" type="file">Save Photo</button>
+<!--<button id="save" type="file">Save Photo</button>-->
 
 <form action="/photo/selfie" method="post" enctype="multipart/form-data">
 <!--    <a href="public/images/image-name.jpg" download>-->
