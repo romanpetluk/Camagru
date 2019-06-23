@@ -14,14 +14,21 @@ class PhotoController extends Controller {
 
     public function galleryAction() {
 
-        $photo = $this->model->displayGallery();
+//        $urlExplode = explode('/', $_SERVER["REDIRECT_URL"]);
+//        $page = end($urlExplode);
+//        $photo = $this->model->getLatestPhoto($page);
 
+        $photo = $this->model->getLatestPhoto();
         $vars = [
             'photo' => $photo,
         ];
 
+        if (!empty($_POST['comment'])) {
+            $this->model->addComment($_POST['image_id'], $_POST['comment']);
+        }
+
         if (!empty($_POST['image_id'])) {
-            $this->model->countLike($_POST['image_id']);
+//            $this->model->countLike($_POST['image_id']);
             if (!empty($_SESSION['account'])) {
                 if ($this->model->checkLike($_POST['image_id'])) {
                     $this->model->addLike($_POST['image_id']);

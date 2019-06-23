@@ -7,7 +7,7 @@ use application\core\Model;
 
 class Photo extends Model {
 
-//    const SHOW_BY_DEFAULT = 5;
+    const SHOW_BY_DEFAULT = 5;
 
     public function uploadImage($fileUpload) {
         if (isset($fileUpload)) {
@@ -37,9 +37,7 @@ class Photo extends Model {
                     'path' => '/' . $targetDir,
                 ];
                 $this->db->query('INSERT INTO gallery VALUES (:image_id, :user_id, NOW(), :path)', $params);
-//                move_uploaded_file($fileTmpName, $targetDir);
-                echo 'ASD';
-                move_uploaded_file($fileTmpName, $_SERVER['DOCUMENT_ROOT'] . '/' . $targetDir);
+                move_uploaded_file($fileTmpName, $targetDir);
                 echo 'success';
             } else {
                 foreach ($errors as $val) {
@@ -49,12 +47,14 @@ class Photo extends Model {
         }
     }
 
-//    public static function getLatestPhoto($count = self::SHOW_BY_DEFAULT) {
-//        $count = intval($count);
-//
-//
-//
-//    }
+    public function getLatestPhoto($page = 1) {
+
+        $offset = ($page - 1) * 5;
+
+        $sql = 'SELECT * FROM gallery ORDER BY creation_date DESC LIMIT 5 OFFSET ' . $offset;
+
+        return $this->db->row($sql);
+    }
 
     public function displayGallery() {
 
@@ -104,6 +104,16 @@ class Photo extends Model {
         ];
         $data = $this->db->column('SELECT COUNT(*) FROM `likes` WHERE image_id = :image_id', $params);
         echo $data;
+    }
+
+    public function addComment($imageId, $comment) {
+        $params = [
+            'comment_id' => null,
+            'user_id' => $_SESSION['account']['user_id'],
+            'image_id' => $imageId,
+            'comment' => $comment
+        ];
+        $this->db->query('INSERT INTO `comments` VALUES (:comment_id, :user_id, :image_id, :comment)', $params);
     }
 
     public function deletePhoto($path) {

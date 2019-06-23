@@ -50,6 +50,7 @@
         ],
 
         //PhotoController
+//        'photo/gallery/([0-9]+)' => [
         'photo/gallery' => [
             'controller' => 'photo',
             'action' => 'gallery',

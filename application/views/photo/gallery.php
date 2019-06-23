@@ -11,12 +11,14 @@
 
 <?php foreach ($photo as $key => $val): ?>
     <p><img src="<?php echo $val['path'] ?>" width="" height="150"></p>
-<textarea>
-
-</textarea>
-    <form action='/photo/gallery' method='post'
+    <form action='/photo/gallery' method='post'>
         <p><input type="hidden" name="image_id" value="<?php echo $val['image_id'] ?>">
         <input type="submit" name="delete" value="like"></p>
+    </form>
+    <form action='/photo/gallery' method='post'>
+        <textarea rows="4" cols="30" name="comment""></textarea>
+        <p><input type="hidden" name="image_id" value="<?php echo $val['image_id'] ?>">
+        <input type="submit" name="delete" value="comment"></p>
     </form>
 
 <?php endforeach; ?>
