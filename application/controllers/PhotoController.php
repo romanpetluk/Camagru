@@ -27,6 +27,13 @@ class PhotoController extends Controller {
         $photo = $this->model->getComments($photo);
 
 
+        if (isset($_POST['delete'])) {
+            if (!empty($_POST['delete'])) {
+                $this->model->deleteComment($_POST['delete']);
+            }
+            unset($_POST['delete']);
+        }
+
         if (isset($_POST['comment'])) {
             if (!empty($_POST['comment'])) {
                 $this->model->addComment($_POST['image_id'], $_POST['comment']);

@@ -129,10 +129,20 @@ class Photo extends Model {
             ];
 //            $sql = 'SELECT `comment` FROM `comments` ORDER BY comment_id DESC LIMIT 5';
 //            $data = $this->db->row($sql);
-            $data = $this->db->row('SELECT `comment`, login FROM `comments` WHERE image_id = :image_id', $params);
+//            $data = $this->db->row('SELECT `comment`, `login`, comment_id FROM `comments` WHERE image_id = :image_id', $params);
+            $data = $this->db->row('SELECT * FROM `comments` WHERE image_id = :image_id', $params);
+
             $val['comment'] = $data;
         }
         return $photo;
+    }
+
+    public function deleteComment($commentId) {
+        $params = [
+            'comment_id' => $commentId,
+        ];
+        $this->db->query("DELETE FROM `comments` WHERE comment_id = :comment_id", $params);
+        echo "123";
     }
 
     public function deletePhoto($path) {

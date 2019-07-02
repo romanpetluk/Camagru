@@ -29,8 +29,13 @@
         <br>
         <?php echo 'user: ' . $comment['login']; ?>
         <br>
-    <p><input type="hidden" name="path" value="<?php echo $val['path'] ?>">
-        <input type="submit" name="delete" value="delete"></p>
+<!--    --><?php // debug($_SESSION); ?>
+    <?php if ($_SESSION['account']['user_id'] == $comment['user_id']): ?>
+    <form action='/photo/gallery' method='post'>
+        <input type="hidden" name="delete" value="<?php echo $comment['comment_id'] ?>">
+        <input type="submit" value="delete">
+    </form>
+    <?php endif; ?>
     <?php endforeach; ?>
     <form action='/photo/gallery' method='post'>
         <textarea rows="4" cols="30" name="comment""></textarea>
