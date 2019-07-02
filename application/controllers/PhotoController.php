@@ -12,23 +12,30 @@ class PhotoController extends Controller {
         $this->view->layout = 'default';
     }
 
+    //Gallery
+
     public function galleryAction() {
 
 //        $urlExplode = explode('/', $_SERVER["REDIRECT_URL"]);
 //        $page = end($urlExplode);
 //        $photo = $this->model->getLatestPhoto($page);
 
-        $photo = $this->model->getLatestPhoto();
-        $vars = [
-            'photo' => $photo,
-        ];
+        var_dump($_POST);
 
-        if (!empty($_POST['comment'])) {
-            $this->model->addComment($_POST['image_id'], $_POST['comment']);
+        $photo = $this->model->getLatestPhoto();
+        $photo = $this->model->getCountLike($photo);
+        $photo = $this->model->getComments($photo);
+
+
+        if (isset($_POST['comment'])) {
+            if (!empty($_POST['comment'])) {
+                $this->model->addComment($_POST['image_id'], $_POST['comment']);
+            }
+            unset($_POST['image_id']);
+            unset($_POST['comment']);
         }
 
         if (!empty($_POST['image_id'])) {
-//            $this->model->countLike($_POST['image_id']);
             if (!empty($_SESSION['account'])) {
                 if ($this->model->checkLike($_POST['image_id'])) {
                     $this->model->addLike($_POST['image_id']);
@@ -38,11 +45,13 @@ class PhotoController extends Controller {
             } else {
                 $this->view->redirect('account/login');
             }
-
             unset($_POST['image_id']);
         }
 
-
+        $vars = [
+            'photo' => $photo,
+        ];
+//        debug($photo);
         $this->view->render('gallery', $vars);
     }
 

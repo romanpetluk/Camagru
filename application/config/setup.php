@@ -33,8 +33,9 @@ $sql = "CREATE TABLE IF NOT EXISTS `accounts` (
          
         CREATE TABLE IF NOT EXISTS `comments` (
         `comment_id` INT AUTO_INCREMENT,
-        `user_id` INT NOT NULL,
         `image_id` INT NOT NULL,
+        `user_id` INT NOT NULL,
+        `login` VARCHAR(8) NOT NULL,
         `comment` TEXT NOT NULL,
         PRIMARY KEY (`comment_id`),
         FOREIGN KEY (`user_id`) REFERENCES accounts(`user_id`),

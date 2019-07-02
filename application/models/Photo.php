@@ -98,22 +98,41 @@ class Photo extends Model {
         }
     }
 
-    public function countLike($imageId) {
-        $params = [
-            'image_id' => $imageId,
-        ];
-        $data = $this->db->column('SELECT COUNT(*) FROM `likes` WHERE image_id = :image_id', $params);
-        echo $data;
+    public function getCountLike($photo) {
+
+        foreach ($photo as &$val) {
+            $params = [
+                'image_id' => $val['image_id'],
+            ];
+            $data = $this->db->column('SELECT COUNT(*) FROM `likes` WHERE image_id = :image_id', $params);
+            $val['like'] = $data;
+        }
+        return $photo;
     }
 
     public function addComment($imageId, $comment) {
         $params = [
             'comment_id' => null,
-            'user_id' => $_SESSION['account']['user_id'],
             'image_id' => $imageId,
-            'comment' => $comment
+            'user_id' => $_SESSION['account']['user_id'],
+            'login' => $_SESSION['account']['login'],
+            'comment' => $comment,
         ];
-        $this->db->query('INSERT INTO `comments` VALUES (:comment_id, :user_id, :image_id, :comment)', $params);
+        $this->db->query('INSERT INTO `comments` VALUES (:comment_id, :image_id, :user_id, :login, :comment)', $params);
+    }
+
+    public function getComments($photo) {
+
+        foreach ($photo as &$val) {
+            $params = [
+                'image_id' => $val['image_id'],
+            ];
+//            $sql = 'SELECT `comment` FROM `comments` ORDER BY comment_id DESC LIMIT 5';
+//            $data = $this->db->row($sql);
+            $data = $this->db->row('SELECT `comment`, login FROM `comments` WHERE image_id = :image_id', $params);
+            $val['comment'] = $data;
+        }
+        return $photo;
     }
 
     public function deletePhoto($path) {

@@ -57,7 +57,7 @@ class AccountController extends Controller {
                 $this->view->message('error', $this->model->error);
             }
             $this->model->login($_POST['login']);
-            $this->view->redirect('account/profile');
+            $this->view->redirect('photo/gallery');
         }
         $this->view->render('Sign in');
     }

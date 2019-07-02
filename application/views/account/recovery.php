@@ -1,8 +1,4 @@
-
-Recovery <br>
-<a href="/account/login">sing in</a>
-
-<h3>Register</h3>
+<h3>Recovery</h3>
 <form action="/account/recovery" method="post">
     <p>Email</p>
     <p><input type="email" name="email"></p>
