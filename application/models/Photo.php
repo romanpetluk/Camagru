@@ -56,9 +56,15 @@ class Photo extends Model {
         return $this->db->row($sql);
     }
 
-    public function displayGallery() {
+//    public function displayGallery() {
+    public function getPhotoThisUser() {
 
-        return $this->db->row("SELECT * FROM `gallery` ORDER BY `user_id`");
+        $params = [
+            'user_id' => $_SESSION['account']['user_id'],
+        ];
+        return $this->db->row('SELECT * FROM `gallery` WHERE user_id = :user_id ORDER BY creation_date DESC', $params);
+
+//        return $this->db->row("SELECT * FROM `gallery` ORDER BY `user_id`");
     }
 
     public function checkLike($imageId) {
@@ -142,10 +148,16 @@ class Photo extends Model {
             'comment_id' => $commentId,
         ];
         $this->db->query("DELETE FROM `comments` WHERE comment_id = :comment_id", $params);
-        echo "123";
     }
 
-    public function deletePhoto($path) {
+    //Remove likes and comments on the photo
+    public function deletePhoto($path, $imageId) {
+        $params = [
+
+            'image_id' => $imageId,
+        ];
+        $this->db->row("DELETE FROM `likes` WHERE image_id = :image_id", $params);
+        $this->db->row("DELETE FROM `comments` WHERE image_id = :image_id", $params);
         $params = [
             'path' => $path,
         ];

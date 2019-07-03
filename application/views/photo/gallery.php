@@ -30,7 +30,7 @@
         <?php echo 'user: ' . $comment['login']; ?>
         <br>
 <!--    --><?php // debug($_SESSION); ?>
-    <?php if ($_SESSION['account']['user_id'] == $comment['user_id']): ?>
+    <?php if (isset($_SESSION['account']) && $_SESSION['account']['user_id'] == $comment['user_id']): ?>
     <form action='/photo/gallery' method='post'>
         <input type="hidden" name="delete" value="<?php echo $comment['comment_id'] ?>">
         <input type="submit" value="delete">

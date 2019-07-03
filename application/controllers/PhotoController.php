@@ -68,13 +68,13 @@ class PhotoController extends Controller {
             unset($_FILES['image']);
         }
 
-        $photo = $this->model->displayGallery();
+        $photo = $this->model->getPhotoThisUser();
         $vars = [
             'photo' => $photo,
         ];
-
+//        debug($_POST);
         if (!empty($_POST['path'])) {
-            $this->model->deletePhoto($_POST['path']);
+            $this->model->deletePhoto($_POST['path'], $_POST['imageId']);
             unset($_POST['path']);
         }
 

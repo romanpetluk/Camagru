@@ -1,0 +1,51 @@
+.selfie {
+  display: flex;
+  /* flex-direction: row; */
+  width: 1150px;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filters {
+  width: 200px;
+  background-color: cadetblue;
+}
+
+.camera {
+  position: relative;
+  width: 640px;
+  margin: 0 auto;
+}
+
+.camera__area {
+  position: relative;
+  border: 2px solid pink;
+  background-color: purple;
+  z-index: 5;
+}
+
+.camera__photo {
+  border: 2px solid coral;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: aqua;
+}
+
+.camera_z_index {
+  z-index: 10;
+}
+
+.photo__list {
+  width: 250px;
+  background-color: #ccc;
+}
+
+.photo__part {
+  text-align: center;
+}
+
+.display-hidden {
+  display: none;
+}

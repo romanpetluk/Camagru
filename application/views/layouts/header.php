@@ -12,7 +12,7 @@
                 <?php if (isset($_SESSION['account']['user_id'])): ?>
                     <li><a href="/photo/selfie">selfie</a></li>
                     <li><a href="/account/profile">profile</a></li>
-                    <li><a href="/account/logout">logout</a></li>
+                    <li><a href="/account/logout">logout<?php echo ': ' . $_SESSION['account']['login']  ?></a></li>
                 <?php else: ?>
                     <li><a href="/account/login">login</a></li>
                     <li><a href="/account/register">register</a></li>
