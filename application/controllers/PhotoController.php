@@ -20,7 +20,7 @@ class PhotoController extends Controller {
 //        $page = end($urlExplode);
 //        $photo = $this->model->getLatestPhoto($page);
 
-        var_dump($_POST);
+        //var_dump($_POST);
 
         $photo = $this->model->getLatestPhoto();
         $photo = $this->model->getCountLike($photo);
@@ -35,11 +35,15 @@ class PhotoController extends Controller {
         }
 
         if (isset($_POST['comment'])) {
-            if (!empty($_POST['comment'])) {
-                $this->model->addComment($_POST['image_id'], $_POST['comment']);
+            if (!empty($_SESSION['account'])) {
+                if (!empty($_POST['comment'])) {
+                    $this->model->addComment($_POST['image_id'], $_POST['comment']);
+                }
+                unset($_POST['image_id']);
+                unset($_POST['comment']);
+            } else {
+                $this->view->redirect('account/login');
             }
-            unset($_POST['image_id']);
-            unset($_POST['comment']);
         }
 
         if (!empty($_POST['image_id'])) {
@@ -76,6 +80,7 @@ class PhotoController extends Controller {
         if (!empty($_POST['path'])) {
             $this->model->deletePhoto($_POST['path'], $_POST['imageId']);
             unset($_POST['path']);
+            unset($_POST['imageId']);
         }
 
         $this->view->render('selfie', $vars);
