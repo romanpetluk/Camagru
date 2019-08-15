@@ -3,6 +3,8 @@
 namespace application\models;
 
 use application\core\Model;
+use application\lib\Email;
+
 
 class Account extends Model {
 
@@ -55,15 +57,15 @@ class Account extends Model {
         return $this->db->column('SELECT user_id FROM accounts WHERE token = :token', $params);
     }
 
-    public function send_mail($email, $headline, $text) {
-
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-        $headers .= 'From: <romantest31@gmail.com>' . "\r\n";
-
-        mail($email, $headline, $text, $headers);
-    }
-
+//    public function send_mail($email, $headline, $text) {
+//
+//        $headers  = 'MIME-Version: 1.0' . "\r\n";
+//        $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+//        $headers .= 'From: <romantest31@gmail.com>' . "\r\n";
+//
+//        mail($email, $headline, $text, $headers);
+//    }
+//
     public function activate($token) {
         $params = [
             'token' => $token,
@@ -83,7 +85,8 @@ class Account extends Model {
         ];
         $this->db->query('INSERT INTO accounts VALUES (:user_id, :email, :login, :password, :token, :status)', $params);
 
-        $this->send_mail($post['email'], 'Register', 'Confirm: http://localhost:8200/account/confirm/' . $token);
+        $sendMail = new Email();
+        $sendMail->sendMail($post['email'], 'Register', 'Confirm: http://localhost:8200/account/confirm/' . $token);
 
     }
 
@@ -130,7 +133,8 @@ class Account extends Model {
         ];
         $this->db->query('UPDATE accounts SET token = :token WHERE email = :email', $params);
 
-        $this->send_mail($post['email'], 'Recovery', 'Confirm: http://localhost:8200/account/reset/' . $token);
+        $sendMail = new Email();
+        $sendMail->sendMail($post['email'], 'Recovery', 'Confirm: http://localhost:8200/account/reset/' . $token);
 
     }
 
@@ -163,7 +167,6 @@ class Account extends Model {
         }
 
         $this->db->query('UPDATE accounts SET email = :email, login = :login'. $sql .' WHERE user_id = :user_id', $params);
-//        $this->db->query('DROP DATABASE camagru');
 
     }
 }

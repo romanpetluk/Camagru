@@ -4,6 +4,8 @@
 namespace application\models;
 
 use application\core\Model;
+use application\lib\Email;
+
 
 class Photo extends Model {
 
@@ -125,6 +127,11 @@ class Photo extends Model {
             'comment' => $comment,
         ];
         $this->db->query('INSERT INTO `comments` VALUES (:comment_id, :image_id, :user_id, :login, :comment)', $params);
+
+
+        $sendMail = new Email();
+        $sendMail->sendMail($_SESSION['account']['email'], 'Comment', 'New comment on your photo');
+
     }
 
     public function getComments($photo) {
@@ -161,7 +168,9 @@ class Photo extends Model {
         $params = [
             'path' => $path,
         ];
-        $this->db->row("DELETE FROM `gallery` WHERE path = :path", $params);
+        $this->db->row("
+ 1= :path", $params);
+
         $path = trim($path, '/');
         if (file_exists($path)) {
             unlink($path);
