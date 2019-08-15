@@ -9,7 +9,7 @@ use application\lib\Email;
 
 class Photo extends Model {
 
-    const SHOW_BY_DEFAULT = 5;
+    //const SHOW_BY_DEFAULT = 5;
 
     public function uploadImage($fileUpload) {
         if (isset($fileUpload)) {
@@ -55,7 +55,11 @@ class Photo extends Model {
 
         $sql = 'SELECT * FROM gallery ORDER BY creation_date DESC LIMIT 5 OFFSET ' . $offset;
 
-        return $this->db->row($sql);
+//        return $this->db->row($sql);
+        $photo = $this->db->row($sql);
+        $photo = $this->getCountLike($photo);
+        $photo = $this->getComments($photo);
+        return($photo);
     }
 
 //    public function displayGallery() {

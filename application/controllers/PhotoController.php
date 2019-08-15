@@ -15,17 +15,7 @@ class PhotoController extends Controller {
     //Gallery
 
     public function galleryAction() {
-
-//        $urlExplode = explode('/', $_SERVER["REDIRECT_URL"]);
-//        $page = end($urlExplode);
-//        $photo = $this->model->getLatestPhoto($page);
-
-        //var_dump($_POST);
-
-        $photo = $this->model->getLatestPhoto();
-        $photo = $this->model->getCountLike($photo);
-        $photo = $this->model->getComments($photo);
-
+        $photo = $this->model->getLatestPhoto(1);
 
         if (isset($_POST['delete'])) {
             if (!empty($_POST['delete'])) {
@@ -62,7 +52,6 @@ class PhotoController extends Controller {
         $vars = [
             'photo' => $photo,
         ];
-//        debug($photo);
         $this->view->render('gallery', $vars);
     }
 
