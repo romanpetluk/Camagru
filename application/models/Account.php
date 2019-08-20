@@ -11,15 +11,15 @@ class Account extends Model {
     public function validate($input, $post ) {
         $rules = [
             'email' => [
-                'pattern' => '#^([A-z0-9_.-]{1,20}+)@([a-z0-9_.-]+)\.([a-z\.]{2,10})$#',
+                'pattern' => '#^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$#',
                 'message' => 'invalid email',
             ],
             'login' => [
-                'pattern' => '#^[a-zA-Z0-9]{3,15}$#',
+                'pattern' => '#^(?=.*[a-zA-Z])[\w]{3,15}$#',
                 'message' => 'invalid login',
             ],
             'password' => [
-                'pattern' => '#^[a-z0-9]{6,20}$#',
+                'pattern' => '#^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$#',
                 'message' => 'invalid password',
             ],
         ];
@@ -85,8 +85,7 @@ class Account extends Model {
         ];
         $this->db->query('INSERT INTO accounts VALUES (:user_id, :email, :login, :password, :token, :status)', $params);
 
-        $sendMail = new Email();
-        $sendMail->sendMail($post['email'], 'Register', 'Confirm: http://localhost:8200/account/confirm/' . $token);
+        Email::sendMail($post['email'], 'Register', 'Confirm: http://localhost:8200/account/confirm/' . $token);
 
     }
 
@@ -133,8 +132,8 @@ class Account extends Model {
         ];
         $this->db->query('UPDATE accounts SET token = :token WHERE email = :email', $params);
 
-        $sendMail = new Email();
-        $sendMail->sendMail($post['email'], 'Recovery', 'Confirm: http://localhost:8200/account/reset/' . $token);
+
+        Email::sendMail($post['email'], 'Recovery', 'Confirm: http://localhost:8200/account/reset/' . $token);
 
     }
 

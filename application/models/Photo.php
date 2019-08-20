@@ -133,8 +133,8 @@ class Photo extends Model {
         $this->db->query('INSERT INTO `comments` VALUES (:comment_id, :image_id, :user_id, :login, :comment)', $params);
 
 
-        $sendMail = new Email();
-        $sendMail->sendMail($_SESSION['account']['email'], 'Comment', 'New comment on your photo');
+
+        Email::sendMail($_SESSION['account']['email'], 'Comment', 'New comment on your photo');
 
     }
 

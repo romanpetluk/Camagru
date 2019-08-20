@@ -26,7 +26,6 @@ class AccountController extends Controller {
                 $this->view->message('error', 'this login is used');
             }
             $this->model->register($_POST);
-            //var_dump($_POST);
 
             $this->view->message('success', 'complete registration, confirm email');
         }

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/public/styles/register.css">
     <link rel="stylesheet" href="/public/styles/profile.css">
     <link rel="stylesheet" href="/public/styles/selfie.css">
+    <link rel="stylesheet" href="/public/styles/gallery.css">
 
 </head>
 <body>

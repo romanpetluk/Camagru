@@ -1,0 +1,10 @@
+.gallery {
+    display: flex;
+    /* flex-direction: row; */
+    width: 1150px;
+    /*justify-content: space-around;*/
+    flex-direction: column;
+    /*justify-content: space-between;*/
+    margin-left: auto;
+    margin-right: auto;
+}
