@@ -16,8 +16,9 @@ class PhotoController extends Controller {
 
     public function galleryAction() {
         $photo = $this->model->getLatestPhoto(1);
-
+        //$frame = $this->model->getLatestPhoto(1)
         if (isset($_POST['delete'])) {
+
             if (!empty($_POST['delete'])) {
                 $this->model->deleteComment($_POST['delete']);
             }
@@ -61,11 +62,20 @@ class PhotoController extends Controller {
             unset($_FILES['image']);
         }
 
+        if (!empty($_POST['filter'])) {
+//            debug($_POST['filter']);
+            echo $_POST['filter'];
+        }
+
         $photo = $this->model->getPhotoThisUser();
         $vars = [
             'photo' => $photo,
         ];
-//        debug($_POST);
+
+        var_dump($_POST);
+        echo '<br>';
+        var_dump($_FILES);
+
         if (!empty($_POST['path'])) {
             $this->model->deletePhoto($_POST['path'], $_POST['imageId']);
             unset($_POST['path']);

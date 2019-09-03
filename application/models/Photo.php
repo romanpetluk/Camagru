@@ -55,11 +55,19 @@ class Photo extends Model {
 
         $sql = 'SELECT * FROM gallery ORDER BY creation_date DESC LIMIT 5 OFFSET ' . $offset;
 
+
 //        return $this->db->row($sql);
         $photo = $this->db->row($sql);
+//        debug($photo);
         $photo = $this->getCountLike($photo);
         $photo = $this->getComments($photo);
         return($photo);
+    }
+
+    public function getFrame($page = 1) {
+
+        $frame = $this->db->row($sql);
+        return($frame);
     }
 
 //    public function displayGallery() {
@@ -172,8 +180,7 @@ class Photo extends Model {
         $params = [
             'path' => $path,
         ];
-        $this->db->row("
- 1= :path", $params);
+        $this->db->row("DELETE FROM `gallery` WHERE path = :path", $params);
 
         $path = trim($path, '/');
         if (file_exists($path)) {

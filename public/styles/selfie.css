@@ -8,8 +8,9 @@
 }
 
 .filters {
+  text-align: center;
   width: 200px;
-  background-color: cadetblue;
+  background-color: #ccc;
 }
 
 .camera {

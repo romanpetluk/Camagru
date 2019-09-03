@@ -12,8 +12,9 @@ li{
     display: flex;
 }
 
-a{
+nav a{
     text-decoration: none;
+    margin: 0;
 }
 
 header{
@@ -37,7 +38,7 @@ header{
     padding: 25px 5px;
 }
 
-.header-container a:hover{
+nav a:hover{
     background: #ffea00;
 }
 

@@ -1,9 +1,15 @@
 
 <div class="selfie">
     <div class="filters">
-        <p>This area for your filters</p>
+        <p>
+        <form action='/photo/selfie' method='post'>
+            <button type="submit" name="filter" value="1"><img src="/public/images/frame/1.jpg" width="150" height=""></button>
+            <button type="submit" name="filter" value="2"><img src="/public/images/frame/2.jpg" width="150" height=""></button>
+            <button type="submit" name="filter" value="3"><img src="/public/images/frame/3.jpg" width="150" height=""></button>
+        </form>
+        </p>
+
     </div>
-        
     <div class="camera">
         <video class="camera__area" id="video" width="640" height="480" autoplay></video>
         <canvas class="camera__photo" id="canvas" width="640" height="480"></canvas>
@@ -11,9 +17,9 @@
     
         <!--<button id="save" type="file">Save Photo</button>-->
 
-        <form action="/photo/selfie" method="post" enctype="multipart/form-data">
+        <form action="/photo/selfie" method="post" enctype="multipart/form-data" name="save_image">
         <!--    <a href="public/images/image-name.jpg" download>-->
-            <button class="save__btn display-hidden" id="save" type="file">Save Photo</button>
+            <button class="save__btn display-hidden" id="save" name="myFile" type="file">Save Photo</button>
         </form>
     </div>
 
@@ -65,7 +71,7 @@
                 <p>
                     <img src="<?php echo $val['path'] ?>" width="" height="150">
                 </p>
-                <form action='/photo/selfie' method='post'>
+                <form action='/photo/selfie' method='post' onSubmit="window.location.reload()">
                     <p>
                         <input type="hidden" name="path" value="<?php echo $val['path'] ?>">
                         <input type="hidden" name="imageId" value="<?php echo $val['image_id'] ?>">
