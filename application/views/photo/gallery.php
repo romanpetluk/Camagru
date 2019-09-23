@@ -1,8 +1,11 @@
 
 <div class="gallery">
+
     <div class="gallery__photo">
         <?php foreach ($photo as $key => $val): ?>
+                <?php echo $_SESSION['account']['login'] ?>
             <p><img src="<?php echo $val['path'] ?>" width="" height="500"></p>
+            <?php echo $val['creation_date']; echo '<br>' ?>
             <?php echo 'like: ' . $val['like'] ?>
             <form action='/photo/gallery' method='post'>
                 <p><input type="hidden" name="image_id" value="<?php echo $val['image_id'] ?>">

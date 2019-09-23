@@ -42,6 +42,11 @@
             <p>Password</p>
             <input class="profile__password-input" type="password" name="password">
         </div>
+        <?php if ($_SESSION['account']['notify']): ?>
+            <p><input class="profile__login-input" type="checkbox" name="notify" value="1" checked>Notify</p>
+        <?php else: ?>
+            <p><input class="profile__login-input" type="checkbox" name="notify" value="0">Notify</p>
+        <?php endif; ?>
         <button class="profile__btn" type="submit">Save</button>
     </form>
 </section>

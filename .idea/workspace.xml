@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="af765768-82da-4ed2-a276-5fbb267094da" name="Default Changelist" comment="add image-filter, favicon">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+    <list default="true" id="af765768-82da-4ed2-a276-5fbb267094da" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/config/setup.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/setup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/AccountController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/PhotoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/PhotoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/models/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Account.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/models/Photo.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Photo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/account/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/account/profile.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/layouts/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/layouts/default.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/photo/gallery.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/photo/gallery.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/photo/selfie.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/photo/selfie.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/styles/gallery.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/gallery.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/styles/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/selfie.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/selfie.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/styles/selfie.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/selfie.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,7 +64,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../test" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -169,7 +171,25 @@
       <workItem from="1567410397820" duration="3025000" />
       <workItem from="1567505627504" duration="13000" />
       <workItem from="1567510692372" duration="4257000" />
-      <workItem from="1567529184031" duration="2631000" />
+      <workItem from="1567529184031" duration="8035000" />
+      <workItem from="1567544601680" duration="5111000" />
+      <workItem from="1567604562802" duration="620000" />
+      <workItem from="1567671659201" duration="1218000" />
+      <workItem from="1567765281310" duration="3891000" />
+      <workItem from="1567931710844" duration="5623000" />
+      <workItem from="1568049866481" duration="3433000" />
+      <workItem from="1568108414291" duration="643000" />
+      <workItem from="1568121310672" duration="8484000" />
+      <workItem from="1568144861304" duration="608000" />
+      <workItem from="1568184191365" duration="16405000" />
+      <workItem from="1568264199694" duration="23382000" />
+      <workItem from="1568409990390" duration="1333000" />
+      <workItem from="1568583039741" duration="599000" />
+      <workItem from="1568624262012" duration="602000" />
+      <workItem from="1568649391136" duration="829000" />
+      <workItem from="1568983541739" duration="248000" />
+      <workItem from="1569091364350" duration="3178000" />
+      <workItem from="1569222560129" duration="4254000" />
     </task>
     <task id="LOCAL-00001" summary="finished with the routes">
       <created>1556783350401</created>
@@ -248,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565868505179</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add image-filter, favicon">
+      <created>1567532407247</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1567532407247</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

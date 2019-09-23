@@ -12,7 +12,7 @@ $sql = "CREATE TABLE IF NOT EXISTS `accounts` (
         `login` VARCHAR(8) NOT NULL,
         `password` VARCHAR(256) NOT NULL,
         `token` VARCHAR(30) NOT NULL,
-        `status` INT(1) NOT NULL,
+        `notify` INT(1) NOT NULL,
         PRIMARY KEY (`user_id`));
                      
         CREATE TABLE IF NOT EXISTS `gallery` (

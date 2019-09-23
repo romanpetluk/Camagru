@@ -70,7 +70,8 @@ class Account extends Model {
         $params = [
             'token' => $token,
         ];
-        $this->db->query('UPDATE accounts SET status = 1, token = "" WHERE token = :token', $params);
+        $this->db->query('UPDATE accounts SET token = "" WHERE token = :token', $params);
+//        $this->db->query('UPDATE accounts SET status = 1, token = "" WHERE token = :token', $params);
     }
 
     public function register($post) {
@@ -81,9 +82,9 @@ class Account extends Model {
             'login' => $post['login'],
             'password' => password_hash($post['password'], PASSWORD_BCRYPT),
             'token' => $token,
-            'status' => 0,
+            'notify' => 1,
         ];
-        $this->db->query('INSERT INTO accounts VALUES (:user_id, :email, :login, :password, :token, :status)', $params);
+        $this->db->query('INSERT INTO accounts VALUES (:user_id, :email, :login, :password, :token, :notify)', $params);
 
         Email::sendMail($post['email'], 'Register', 'Confirm: http://localhost:8200/account/confirm/' . $token);
 
@@ -106,8 +107,8 @@ class Account extends Model {
             $type => $data,
         ];
 
-        $status = $this->db->column('SELECT status FROM accounts WHERE '. $type .' = :'. $type, $params);
-        if ($status != 1) {
+        $status = $this->db->column('SELECT token FROM accounts WHERE '. $type .' = :'. $type, $params);
+        if ($status) {
             $this->error = 'account must be confirmed by email';
             return false;
         }
@@ -154,18 +155,24 @@ class Account extends Model {
             'user_id' => $_SESSION['account']['user_id'],
             'email' => $post['email'],
             'login' => $post['login'],
+            'notify' => 0,
         ];
+        if (isset($post['notify'])) {
+            $params['notify'] = 1;
+        }
+
+        foreach($params as $key => $val) {
+            $_SESSION['account'][$key] = $val;
+        }
+
         if (!empty($post['password'])) {
             $params['password'] = password_hash($post['password'], PASSWORD_BCRYPT);
             $sql = ', password = :password';
         } else {
             $sql = '';
         }
-        foreach($params as $key => $val) {
-            $_SESSION['account'][$key] = $val;
-        }
 
-        $this->db->query('UPDATE accounts SET email = :email, login = :login'. $sql .' WHERE user_id = :user_id', $params);
+        $this->db->query('UPDATE accounts SET email = :email, login = :login, notify = :notify'. $sql .' WHERE user_id = :user_id', $params);
 
     }
 }

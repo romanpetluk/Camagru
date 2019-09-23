@@ -84,8 +84,9 @@ class AccountController extends Controller {
             if (!empty($_POST['password']) and !$this->model->validate(['password'], $_POST)) {
                 $this->view->message('error', $this->model->error);
             }
+//            debug($_POST);
             $this->model->save($_POST);
-            $this->view->message('error', 'save');
+//            $this->view->message('error', 'save');
         }
         $this->view->render('Profile');
     }

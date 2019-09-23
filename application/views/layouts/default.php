@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="/public/images/logo.png" type="image/png" />
     <title><?php echo "$title"; ?></title>
+    <link rel="shortcut icon" href="/public/images/logo.png" type="image/png" />
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/public/styles/header.css">
     <link rel="stylesheet" href="/public/styles/footer.css">
@@ -30,6 +30,6 @@
 <?php require_once "application/views/layouts/footer.php" ?>
 
     <script src="/public/scripts/ajax.js"></script>
-    <script src="/public/scripts/selfie.js"></script>
+<!--    <script src="/public/scripts/selfie.js"></script>-->
 </body>
 </html>

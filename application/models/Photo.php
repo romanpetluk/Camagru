@@ -40,6 +40,7 @@ class Photo extends Model {
                 ];
                 $this->db->query('INSERT INTO gallery VALUES (:image_id, :user_id, NOW(), :path)', $params);
                 move_uploaded_file($fileTmpName, $targetDir);
+//                echo $fileTmpName;
                 echo 'success';
             } else {
                 foreach ($errors as $val) {
@@ -56,9 +57,7 @@ class Photo extends Model {
         $sql = 'SELECT * FROM gallery ORDER BY creation_date DESC LIMIT 5 OFFSET ' . $offset;
 
 
-//        return $this->db->row($sql);
         $photo = $this->db->row($sql);
-//        debug($photo);
         $photo = $this->getCountLike($photo);
         $photo = $this->getComments($photo);
         return($photo);
@@ -140,9 +139,11 @@ class Photo extends Model {
         ];
         $this->db->query('INSERT INTO `comments` VALUES (:comment_id, :image_id, :user_id, :login, :comment)', $params);
 
+        if ($_SESSION['account']['notify']) {
+            echo 'SEND';
+            Email::sendMail($_SESSION['account']['email'], 'Comment', 'New comment on your photo');
+        }
 
-
-        Email::sendMail($_SESSION['account']['email'], 'Comment', 'New comment on your photo');
 
     }
 
@@ -186,6 +187,41 @@ class Photo extends Model {
         if (file_exists($path)) {
             unlink($path);
         }
+    }
+
+    function applySticker($mainImagePath, $stickerPath) {
+        $info = getimagesize($mainImagePath);
+        $_SESSION['test'] = $info;
+
+        switch ($info[2]) {
+            case 1:
+                $mainimage = imageCreateFromGif($mainImagePath);
+                break;
+            case 2:
+                $mainimage = imageCreateFromJpeg($mainImagePath);
+                break;
+            case 3:
+                $mainimage = imageCreateFromPng($mainImagePath);
+                break;
+        }
+
+        $sticker = imagecreatefrompng($stickerPath);
+
+        $imageWidth = $info[0];
+        $imageHeight = $info[1];
+        $stickerWidth = imagesx($sticker);
+        $stickerHeight = imagesy($sticker);
+
+        $resImage = imagecreatetruecolor($imageWidth, $imageHeight);
+        imagecopyresampled($resImage, $mainimage, 0,0,0,0, $imageWidth, $imageHeight, $imageWidth, $imageHeight);
+        imagecopyresized($resImage, $sticker, 0, 0, 0, 0, $imageWidth, $imageHeight, $stickerWidth, $stickerHeight);
+
+        imagepng($resImage, $mainImagePath, 0);
+
+        imagedestroy($mainimage);
+        imagedestroy($resImage);
+        imagedestroy($sticker);
+
     }
 
 }

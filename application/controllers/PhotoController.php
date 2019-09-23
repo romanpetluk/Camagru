@@ -15,8 +15,9 @@ class PhotoController extends Controller {
     //Gallery
 
     public function galleryAction() {
+
+        var_dump($_SESSION['test']);
         $photo = $this->model->getLatestPhoto(1);
-        //$frame = $this->model->getLatestPhoto(1)
         if (isset($_POST['delete'])) {
 
             if (!empty($_POST['delete'])) {
@@ -56,25 +57,33 @@ class PhotoController extends Controller {
         $this->view->render('gallery', $vars);
     }
 
+    //Selfie
     public function selfieAction() {
         if (!empty($_FILES['image']['name'])) {
             $this->model->uploadImage($_FILES['image']);
             unset($_FILES['image']);
         }
 
-        if (!empty($_POST['filter'])) {
-//            debug($_POST['filter']);
-            echo $_POST['filter'];
-        }
+//        var_dump(getimagesize('public/images/gallery/img.png'));
+//        if (!empty($_POST['filter'])) {
+//            echo $_POST['filter'];
+//        }
 
         $photo = $this->model->getPhotoThisUser();
         $vars = [
             'photo' => $photo,
         ];
 
-        var_dump($_POST);
-        echo '<br>';
-        var_dump($_FILES);
+        if(!empty($_POST['img'])) {
+            $img = str_replace(' ', '+', $_POST['img']);
+            $img = base64_decode($img);
+            $fileNameNew = uniqid('', true). '.' . 'png';
+            file_put_contents('public/images/gallery/'. $fileNameNew, $img);
+            imagedestroy($img);
+//            $_SESSION['test'] = $_POST['value'];
+
+            $this->model->applySticker('public/images/gallery/img.png', 'public/images/frame/'. $_POST['value'] .'.png');
+        }
 
         if (!empty($_POST['path'])) {
             $this->model->deletePhoto($_POST['path'], $_POST['imageId']);

@@ -21,17 +21,25 @@
 
 .camera__area {
   position: relative;
-  border: 2px solid pink;
+  /*border: 2px solid pink;*/
   background-color: purple;
   z-index: 5;
 }
 
 .camera__photo {
-  border: 2px solid coral;
+  /*border: 2px solid coral;*/
   position: absolute;
   top: 0;
   left: 0;
   background-color: aqua;
+}
+
+.camera__image {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
 }
 
 .camera_z_index {
