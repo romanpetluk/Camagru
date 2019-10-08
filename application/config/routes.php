@@ -3,15 +3,15 @@
     return [
 
         //MainController
-//        '' => [
-//            'controller' => 'main',
-//            'action' => 'index',
-//        ],
-
         '' => [
-            'controller' => 'photo',
-            'action' => 'gallery',
+            'controller' => 'main',
+            'action' => 'index',
         ],
+
+//        '' => [
+//            'controller' => 'photo',
+//            'action' => 'gallery',
+//        ],
 
         //AccountController
         'account/login' => [
@@ -50,8 +50,8 @@
         ],
 
         //PhotoController
-//        'photo/gallery/([0-9]+)' => [
-        'photo/gallery' => [
+        'photo/gallery/([0-9]+)' => [
+//        'photo/gallery' => [
             'controller' => 'photo',
             'action' => 'gallery',
         ],

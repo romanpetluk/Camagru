@@ -36,11 +36,14 @@ class Photo extends Model {
                 $params = [
                     'image_id' =>null,
                     'user_id' => $_SESSION['account']['user_id'],
+                    'login' => $_SESSION['account']['login'],
                     'path' => '/' . $targetDir,
                 ];
-                $this->db->query('INSERT INTO gallery VALUES (:image_id, :user_id, NOW(), :path)', $params);
-                move_uploaded_file($fileTmpName, $targetDir);
-//                echo $fileTmpName;
+
+                if (move_uploaded_file($fileTmpName, $targetDir)) {
+                    $this->db->query('INSERT INTO gallery VALUES (:image_id, :user_id, :login, NOW(), :path)', $params);
+                }
+
                 echo 'success';
             } else {
                 foreach ($errors as $val) {
@@ -50,12 +53,15 @@ class Photo extends Model {
         }
     }
 
-    public function getLatestPhoto($page = 1) {
 
+
+    public function getPhoto($page = 1) {
+
+        $numberUrl = explode('/', $_SERVER['REQUEST_URI']);
+        $page = end($numberUrl);
         $offset = ($page - 1) * 5;
 
         $sql = 'SELECT * FROM gallery ORDER BY creation_date DESC LIMIT 5 OFFSET ' . $offset;
-
 
         $photo = $this->db->row($sql);
         $photo = $this->getCountLike($photo);
@@ -63,11 +69,26 @@ class Photo extends Model {
         return($photo);
     }
 
-    public function getFrame($page = 1) {
+    public function pagination() {
+        $numberUrl = explode('/', $_SERVER['REQUEST_URI']);
+        $page = end($numberUrl);
 
-        $frame = $this->db->row($sql);
-        return($frame);
+        $sql = 'SELECT COUNT(*) FROM `gallery`';
+
+        $countPhoto = $this->db->column($sql);
+        $lastPage = ceil($countPhoto / 5);
+        $infoPage = [
+            'page' => $page,
+            'lastPage' => $lastPage
+        ];
+        return $infoPage;
     }
+
+//    public function getFrame($page = 1) {
+//
+//        $frame = $this->db->row($sql);
+//        return($frame);
+//    }
 
 //    public function displayGallery() {
     public function getPhotoThisUser() {
@@ -75,6 +96,7 @@ class Photo extends Model {
         $params = [
             'user_id' => $_SESSION['account']['user_id'],
         ];
+//        return $this->db->row('SELECT * FROM `gallery` WHERE user_id = :user_id ORDER BY creation_date DESC', $params);
         return $this->db->row('SELECT * FROM `gallery` WHERE user_id = :user_id ORDER BY creation_date DESC', $params);
 
 //        return $this->db->row("SELECT * FROM `gallery` ORDER BY `user_id`");
@@ -189,10 +211,18 @@ class Photo extends Model {
         }
     }
 
-    function applySticker($mainImagePath, $stickerPath) {
-        $info = getimagesize($mainImagePath);
-        $_SESSION['test'] = $info;
 
+
+    function applySticker($mainImagePath, $stickerNumber) {
+
+        $stickerPath = 'public/images/frame/'. $stickerNumber .'.png';
+        $params = [
+            'image_id' =>null,
+            'user_id' => $_SESSION['account']['user_id'],
+            'login' => $_SESSION['account']['login'],
+            'path' => '/' . $mainImagePath,
+        ];
+        $info = getimagesize($mainImagePath);
         switch ($info[2]) {
             case 1:
                 $mainimage = imageCreateFromGif($mainImagePath);
@@ -214,14 +244,22 @@ class Photo extends Model {
 
         $resImage = imagecreatetruecolor($imageWidth, $imageHeight);
         imagecopyresampled($resImage, $mainimage, 0,0,0,0, $imageWidth, $imageHeight, $imageWidth, $imageHeight);
-        imagecopyresized($resImage, $sticker, 0, 0, 0, 0, $imageWidth, $imageHeight, $stickerWidth, $stickerHeight);
 
-        imagepng($resImage, $mainImagePath, 0);
+        if ($stickerNumber == 4) {
+            imagefilter($resImage, IMG_FILTER_GRAYSCALE);
+        } else {
+            imagecopyresized($resImage, $sticker, 0, 0, 0, 0, $imageWidth, $imageHeight, $stickerWidth, $stickerHeight);
+        }
+
+
+
+        if (imagepng($resImage, $mainImagePath, 0)) {
+            $this->db->query('INSERT INTO gallery VALUES (:image_id, :user_id, :login, NOW(), :path)', $params);
+        }
 
         imagedestroy($mainimage);
         imagedestroy($resImage);
         imagedestroy($sticker);
-
     }
 
 }

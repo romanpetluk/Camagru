@@ -4,6 +4,7 @@
 namespace application\controllers;
 
 use application\core\Controller;
+use application\core\View;
 
 class PhotoController extends Controller {
 
@@ -17,7 +18,11 @@ class PhotoController extends Controller {
     public function galleryAction() {
 
         var_dump($_SESSION['test']);
-        $photo = $this->model->getLatestPhoto(1);
+
+        //$photo = $this->model->getLatestPhoto(1);
+//        View::errorCode(404);
+        $page = $this->model->pagination();
+        $photo = $this->model->getPhoto(1);
         if (isset($_POST['delete'])) {
 
             if (!empty($_POST['delete'])) {
@@ -53,6 +58,7 @@ class PhotoController extends Controller {
 
         $vars = [
             'photo' => $photo,
+            'page' => $page,
         ];
         $this->view->render('gallery', $vars);
     }
@@ -82,7 +88,8 @@ class PhotoController extends Controller {
             imagedestroy($img);
 //            $_SESSION['test'] = $_POST['value'];
 
-            $this->model->applySticker('public/images/gallery/img.png', 'public/images/frame/'. $_POST['value'] .'.png');
+            $this->model->applySticker('public/images/gallery/'. $fileNameNew, $_POST['value']);
+//            $this->model->applySticker('public/images/gallery/'. $fileNameNew, 'public/images/frame/'. $_POST['value'] .'.png');
         }
 
         if (!empty($_POST['path'])) {

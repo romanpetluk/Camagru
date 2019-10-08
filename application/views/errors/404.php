@@ -1,5 +1,5 @@
 
-page 404: page not found.
+<h2>page 404: page not found.</h2>
 <br>
 
 

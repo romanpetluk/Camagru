@@ -8,7 +8,7 @@
         <nav role="navigation">
             <label for="menu-checkbox" class="toggle-button" data-open="MENU" data-close="CLOSE" onclick></label>
             <ul class="main-menu">
-                <li><a href="/photo/gallery">gallery</a></li>
+                <li><a href="/photo/gallery/1">gallery</a></li>
                 <?php if (isset($_SESSION['account']['user_id'])): ?>
                     <li><a href="/photo/selfie">selfie</a></li>
                     <li><a href="/account/profile">profile</a></li>

@@ -5,3 +5,5 @@
 <!--<p>--><?php //echo $val['description']; ?><!--</p>-->
 <!--<hr>-->
 <?php //endforeach; ?>
+
+<?php header("Location: http://localhost:8200/photo/gallery/1"); ?>

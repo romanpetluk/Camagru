@@ -9,7 +9,7 @@ $dbh->query('CREATE DATABASE IF NOT EXISTS ' . 'camagru'. '; USE camagru');
 $sql = "CREATE TABLE IF NOT EXISTS `accounts` (
         `user_id` INT AUTO_INCREMENT,
         `email` VARCHAR(254) NOT NULL,
-        `login` VARCHAR(8) NOT NULL,
+        `login` VARCHAR(30) NOT NULL,
         `password` VARCHAR(256) NOT NULL,
         `token` VARCHAR(30) NOT NULL,
         `notify` INT(1) NOT NULL,
@@ -18,6 +18,7 @@ $sql = "CREATE TABLE IF NOT EXISTS `accounts` (
         CREATE TABLE IF NOT EXISTS `gallery` (
         `image_id` INT AUTO_INCREMENT,
         `user_id` INT NOT NULL,
+        `login` VARCHAR(30) NOT NULL,
         `creation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         `path` VARCHAR(256) NOT NULL,
         PRIMARY KEY (`image_id`),
