@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/public/styles/profile.css">
     <link rel="stylesheet" href="/public/styles/selfie.css">
     <link rel="stylesheet" href="/public/styles/gallery.css">
+    <link rel="stylesheet" href="/public/styles/recovery.css">
+    <link rel="stylesheet" href="/public/styles/reset.css">
 
 </head>
 <body>
@@ -29,7 +31,8 @@
 
 <?php require_once "application/views/layouts/footer.php" ?>
 
-    <script src="/public/scripts/ajax.js"></script>
+    <script src="/public/scripts/ajax_register.js"></script>
+    <script src="/public/scripts/ajax_profile.js"></script>
 <!--    <script src="/public/scripts/selfie.js"></script>-->
 </body>
 </html>

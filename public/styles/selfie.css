@@ -58,3 +58,69 @@
 .display-hidden {
   display: none;
 }
+
+@media (max-width: 768px) {
+  .selfie {
+    width: 768px;
+  }
+  .filters {
+    width: 100px;
+  }
+  .filters button img {
+    width: 100px !important;
+  }
+
+  .camera {
+    width: 400px;
+    height: 300px;
+  }
+  .camera video,
+  canvas {
+    width: 400px;
+    height: 300px;
+  }
+  .camera__image {
+    width: 400px;
+    height: 300px;
+  }
+
+  .photo__list {
+    width: 200px;
+  }
+  .photo__part img {
+    width: 200px;
+  }
+}
+
+@media (max-width: 320px) {
+  .selfie {
+    width: 320px;
+  }
+  .filters {
+    width: 50px;
+  }
+  .filters button img {
+    width: 50px !important;
+  }
+
+  .camera {
+    width: 160px;
+    height: 120px;
+  }
+  .camera video,
+  canvas {
+    width: 160px;
+    height: 120px;
+  }
+  .camera__image {
+    width: 160px;
+    height: 120px;
+  }
+
+  .photo__list {
+    width: 100px;
+  }
+  .photo__part img {
+    width: 100px;
+  }
+}

@@ -26,6 +26,7 @@ class View
             $content = ob_get_clean();
             require 'application/views/layouts/' . $this->layout . '.php';
         }
+
     }
 
     public function redirect($url) {
@@ -46,7 +47,7 @@ class View
         exit(json_encode(['status'  => $status, 'message' => $message]));
 }
 
-    public function location($url) {
-        exit(json_encode(['url'  => $url]));
-    }
+//    public function location($url) {
+//        exit(json_encode(['url'  => $url]));
+//    }
 }

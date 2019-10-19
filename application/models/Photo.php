@@ -9,8 +9,6 @@ use application\lib\Email;
 
 class Photo extends Model {
 
-    //const SHOW_BY_DEFAULT = 5;
-
     public function uploadImage($fileUpload) {
         if (isset($fileUpload)) {
             $errors = array();

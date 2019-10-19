@@ -51,8 +51,13 @@ if (form) {
 
       request.addEventListener("readystatechange", function() {
         if (request.readyState == 4 && request.status == 200) {
-          alert("Ваша заявка успішно відправлена");
-          form.innerHTML = "<h2>Приємного користування нашим ресурсом</h2>";
+          var responseText = JSON.parse(request.response);
+          if (responseText.status === "error") {
+            alert(responseText.message);
+          } else if (responseText.status === "success") {
+            alert(responseText.message);
+            document.location.href = "./login";
+          }
         }
       });
     }

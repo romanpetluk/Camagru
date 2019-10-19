@@ -1,7 +1,7 @@
 
+<div class="reset">
+    <h3 class="reset__title-text">Your new password: '<b><?php echo $password; ?></b>'</h3>
+</div>
 
-<p>Your new password: <b><?php echo $password; ?></b></p>
-<a href="/account/login">sing in</a>
 
-</body>
-</html><?php
+

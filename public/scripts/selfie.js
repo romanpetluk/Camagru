@@ -53,6 +53,8 @@ btn_save.addEventListener("click", function(e) {
     btn_save.classList.add("display-hidden");
     btn_snap.classList.remove("display-hidden");
     canvas.classList.remove("camera_z_index");
+
+    setTimeout(function() { location.reload(); }, 100);
 });
 
 function convertImageToCanvas(image) {

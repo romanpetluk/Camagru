@@ -4,7 +4,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.profile{
+.recovery{
     height: 350px;
     width: 400px;
     display: flex;
@@ -15,49 +15,39 @@
     box-sizing: border-box;
 }
 
-.profile__title-text{
+.recovery__title-text{
     text-align: center;
 }
 
-.profile__field{
-    min-height: 250px;
+.recovery__field{
+    min-height: 150px;
     width: 400px;
     border: solid black 2px;
     text-align: center;
-    padding: 25px 30px;
+    padding: 20px 30px;
     box-sizing: border-box;
 }
 
-.profile__email, .profile__login, .profile__password, .profile__notify-input{
+.recovery__email {
     display: flex;
     flex-direction: row;
 }
 
-.profile__email{
+.recovery__email{
     margin-top: 20px;
     margin-bottom: 30px;
 }
 
-.profile__login, .profile__password, .profile__notify-input{
-    margin-bottom: 30px;
-}
-
-.profile__email-input,
-.profile__login-input,
-.profile__password-input,
-.profile__notify-input {
+.recovery__email-input {
     width: 200px;
 }
 
-.profile__email p:first-child,
-.profile__login p:first-child,
-.profile__password p:first-child,
-.profile__notify-input p:first-child {
+.recovery__email p:first-child{
     text-align: left;
     width: 100px;
 }
 
-.profile__btn{
+.recovery__btn{
     width: 80px;
     height: 30px;
     font-size:16px;
@@ -66,7 +56,7 @@
     font-weight: bold;
 }
 
-.profile__btn:hover{
+.recovery__btn:hover{
     cursor: pointer;
     background-color: #ccc;
     box-shadow: inset 0 3px 2px black;

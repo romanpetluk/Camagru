@@ -57,8 +57,9 @@ class AccountController extends Controller {
                 $this->view->message('error', $this->model->error);
             }
             $this->model->login($_POST['login']);
-            $this->view->redirect('photo/gallery');
+            $this->view->redirect('photo/gallery/1');
         }
+
         $this->view->render('Sign in');
     }
 
@@ -84,9 +85,9 @@ class AccountController extends Controller {
             if (!empty($_POST['password']) and !$this->model->validate(['password'], $_POST)) {
                 $this->view->message('error', $this->model->error);
             }
-//            debug($_POST);
+
             $this->model->save($_POST);
-//            $this->view->message('error', 'save');
+
         }
         $this->view->render('Profile');
     }

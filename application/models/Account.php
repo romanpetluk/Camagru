@@ -47,7 +47,7 @@ class Account extends Model {
     }
 
     public function createToken($Characters) {
-        return substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstuvwxyz', 5)), 0 , $Characters);
+        return substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', 5)), 0 , $Characters);
     }
 
     public function checkTokenExists($token) {
@@ -70,8 +70,8 @@ class Account extends Model {
         $params = [
             'token' => $token,
         ];
-        $this->db->query('UPDATE accounts SET token = "" WHERE token = :token', $params);
-//        $this->db->query('UPDATE accounts SET status = 1, token = "" WHERE token = :token', $params);
+//        $this->db->query('UPDATE accounts SET token = "" WHERE token = :token', $params);
+        $this->db->query('UPDATE accounts SET status = 1, token = "" WHERE token = :token', $params);
     }
 
     public function register($post) {
@@ -83,8 +83,9 @@ class Account extends Model {
             'password' => password_hash($post['password'], PASSWORD_BCRYPT),
             'token' => $token,
             'notify' => 1,
+            'status' => 0,
         ];
-        $this->db->query('INSERT INTO accounts VALUES (:user_id, :email, :login, :password, :token, :notify)', $params);
+        $this->db->query('INSERT INTO accounts VALUES (:user_id, :email, :login, :password, :token, :notify, :status)', $params);
 
         Email::sendMail($post['email'], 'Register', 'Confirm: http://localhost:8200/account/confirm/' . $token);
 
@@ -107,8 +108,8 @@ class Account extends Model {
             $type => $data,
         ];
 
-        $status = $this->db->column('SELECT token FROM accounts WHERE '. $type .' = :'. $type, $params);
-        if ($status) {
+        $status = $this->db->column('SELECT status FROM accounts WHERE '. $type .' = :'. $type, $params);
+        if (!$status) {
             $this->error = 'account must be confirmed by email';
             return false;
         }
@@ -139,13 +140,17 @@ class Account extends Model {
     }
 
     public function reset($token) {
-        $new_password = $this->createToken(8);
+        $patern = '#^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$#';
+        do {
+            $new_password = $this->createToken(8);
+        } while (!preg_match($patern ,$new_password));
+
         $params = [
             'token' => $token,
             'password' => password_hash($new_password, PASSWORD_BCRYPT),
         ];
         $this->db->query('UPDATE accounts SET status = 1, token = "", password = :password WHERE token = :token', $params);
-        //$this->send_mail($post['email'], 'Recovery', 'Your new password: ' . $new_password);
+//        $this->send_mail($post['email'], 'Recovery', 'Your new password: ' . $new_password);
         return $new_password;
 
     }

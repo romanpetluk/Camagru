@@ -17,12 +17,6 @@ class PhotoController extends Controller {
 
     public function galleryAction() {
 
-        var_dump($_SESSION['test']);
-
-        //$photo = $this->model->getLatestPhoto(1);
-//        View::errorCode(404);
-        $page = $this->model->pagination();
-        $photo = $this->model->getPhoto(1);
         if (isset($_POST['delete'])) {
 
             if (!empty($_POST['delete'])) {
@@ -56,6 +50,8 @@ class PhotoController extends Controller {
             unset($_POST['image_id']);
         }
 
+        $page = $this->model->pagination();
+        $photo = $this->model->getPhoto(1);
         $vars = [
             'photo' => $photo,
             'page' => $page,
@@ -70,15 +66,11 @@ class PhotoController extends Controller {
             unset($_FILES['image']);
         }
 
-//        var_dump(getimagesize('public/images/gallery/img.png'));
-//        if (!empty($_POST['filter'])) {
-//            echo $_POST['filter'];
-//        }
-
-        $photo = $this->model->getPhotoThisUser();
-        $vars = [
-            'photo' => $photo,
-        ];
+        if (!empty($_POST['path'])) {
+            $this->model->deletePhoto($_POST['path'], $_POST['imageId']);
+            unset($_POST['path']);
+            unset($_POST['imageId']);
+        }
 
         if(!empty($_POST['img'])) {
             $img = str_replace(' ', '+', $_POST['img']);
@@ -86,19 +78,16 @@ class PhotoController extends Controller {
             $fileNameNew = uniqid('', true). '.' . 'png';
             file_put_contents('public/images/gallery/'. $fileNameNew, $img);
             imagedestroy($img);
-//            $_SESSION['test'] = $_POST['value'];
 
             $this->model->applySticker('public/images/gallery/'. $fileNameNew, $_POST['value']);
-//            $this->model->applySticker('public/images/gallery/'. $fileNameNew, 'public/images/frame/'. $_POST['value'] .'.png');
         }
 
-        if (!empty($_POST['path'])) {
-            $this->model->deletePhoto($_POST['path'], $_POST['imageId']);
-            unset($_POST['path']);
-            unset($_POST['imageId']);
-        }
-
+        $photo = $this->model->getPhotoThisUser();
+        $vars = [
+            'photo' => $photo,
+        ];
         $this->view->render('selfie', $vars);
+
     }
 }
 
