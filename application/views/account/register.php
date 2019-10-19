@@ -11,7 +11,7 @@
         </div>
         <div class="register__password">
             <p>Password:</p>
-            <input class="register__password-input" type="password" name="password" placeholder="Write password" required minlength="6" maxlength="20">
+            <input class="register__password-input" type="password" name="password" placeholder="Write password" autocomplete="off" required minlength="6" maxlength="20">
         </div>
         <button class="register__btn" type="submit" name="enter">Register</button>
     </form>

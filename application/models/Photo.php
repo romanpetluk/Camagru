@@ -150,6 +150,7 @@ class Photo extends Model {
     }
 
     public function addComment($imageId, $comment) {
+        $comment = htmlspecialchars($comment);
         $params = [
             'comment_id' => null,
             'image_id' => $imageId,
@@ -160,7 +161,6 @@ class Photo extends Model {
         $this->db->query('INSERT INTO `comments` VALUES (:comment_id, :image_id, :user_id, :login, :comment)', $params);
 
         if ($_SESSION['account']['notify']) {
-            echo 'SEND';
             Email::sendMail($_SESSION['account']['email'], 'Comment', 'New comment on your photo');
         }
 

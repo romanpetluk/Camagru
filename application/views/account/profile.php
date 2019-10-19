@@ -11,7 +11,7 @@
         </div>
         <div class="profile__password">
             <p>Password</p>
-            <input class="profile__password-input" type="password" name="password">
+            <input class="profile__password-input" type="password" name="password" autocomplete="off">
         </div>
         <div class="profile__notify-input">
         <?php if ($_SESSION['account']['notify']): ?>

@@ -27,7 +27,7 @@ class AccountController extends Controller {
             }
             $this->model->register($_POST);
 
-            $this->view->message('success', 'complete registration, confirm email');
+            $this->view->message('success', 'registration completed, confirm email');
         }
         $this->view->render('Register');
     }
@@ -54,7 +54,7 @@ class AccountController extends Controller {
                 $this->view->message('error', 'login or password is not correct');
             }
             elseif (!$this->model->checkStatus('login', $_POST['login'])) {
-                $this->view->message('error', $this->model->error);
+                $this->view->message('error', 'login or password is not correct');
             }
             $this->model->login($_POST['login']);
             $this->view->redirect('photo/gallery/1');

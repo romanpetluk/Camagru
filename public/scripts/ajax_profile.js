@@ -42,7 +42,15 @@ if (profile) {
 
     request.addEventListener("readystatechange", function() {
       if (request.readyState == 4 && request.status == 200) {
-        alert("changes saved");
+        if (request.response.includes('"status":"error"')) {
+          var responseText = JSON.parse(request.response);
+          if (responseText && responseText.status === "error") {
+            alert(responseText.message);
+          }
+        } else {
+          alert("changes saved");
+          document.location.reload(true);
+        }
       }
     });
   });

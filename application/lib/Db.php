@@ -16,6 +16,7 @@ class Db
             $config = require 'application/config/database.php';
             require_once 'application/config/setup.php';
             $this->db = new PDO('mysql:host=' . $config['host'] . ';dbname=' . '' . '', $config['user'], $config['password']);
+//            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->db->query('USE ' . $config['dbname']);
         } catch (\PDOException $e) {
             die("DB ERROR: " . $e->getMessage());

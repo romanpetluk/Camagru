@@ -13,8 +13,10 @@ body, html{
 footer{
     background: gainsboro;
     clear:both;
-    height: 50px;
-    margin-top: -50px;
+    height: 25px;
+    margin-top: -25px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #rasporka{
@@ -22,14 +24,13 @@ footer{
 }
 
 .foo {
-    background: gainsboro;
-    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 
 }
 
 .contacts{
     display: flex;
-    width: 50%;
 }
 
 .author{

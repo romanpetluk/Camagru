@@ -7,7 +7,7 @@
         </div>
         <div class="form__password">
             <p class="form__password-text">Password:</p>
-            <input class="form__password-input" type="password" name="password" placeholder="Write your password...">
+            <input class="form__password-input" type="password" name="password" autocomplete="off" placeholder="Write your password...">
         </div>
         <div class="form__btns">
             <button class="form__btn" type="submit" name="enter">Login</button>

@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="/public/styles/gallery.css">
     <link rel="stylesheet" href="/public/styles/recovery.css">
     <link rel="stylesheet" href="/public/styles/reset.css">
+    <link rel="stylesheet" href="/public/styles/confirm.css">
+
 
 </head>
 <body>
@@ -33,6 +35,8 @@
 
     <script src="/public/scripts/ajax_register.js"></script>
     <script src="/public/scripts/ajax_profile.js"></script>
-<!--    <script src="/public/scripts/selfie.js"></script>-->
+    <script src="/public/scripts/ajax_login.js"></script>
+    <script src="/public/scripts/ajax_recovery.js"></script>
+
 </body>
 </html>
