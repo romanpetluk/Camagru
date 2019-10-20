@@ -1,24 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="af765768-82da-4ed2-a276-5fbb267094da" name="Default Changelist" comment="fixed: recovery password, refresh gallery,">
-      <change afterPath="$PROJECT_DIR$/public/scripts/ajax_login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/scripts/ajax_recovery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/styles/confirm.css" afterDir="false" />
+    <list default="true" id="af765768-82da-4ed2-a276-5fbb267094da" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/application/lib/CreateDb.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/frame/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/frame/10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/frame/11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/frame/12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/frame/13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/frame/14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/frame/15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/frame/16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/frame/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/frame/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/frame/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/frame/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/frame/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/frame/8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/frame/9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/gallery/.gitkeep" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/acl/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/acl/account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/acl/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/acl/main.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/config/setup.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/setup.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/AccountController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/MainController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/core/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/core/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/core/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/core/Router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/core/View.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/core/View.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/lib/Db.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/lib/Db.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/models/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Account.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/models/Photo.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Photo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/account/confirm.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/account/confirm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/account/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/account/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/account/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/account/profile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/account/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/account/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/layouts/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/layouts/default.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/layouts/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/layouts/account.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/layouts/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/layouts/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/photo/pagination.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/photo/pagination.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/author" beforeDir="false" afterPath="$PROJECT_DIR$/author" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/main/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/main/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/photo/gallery.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/photo/gallery.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/photo/selfie.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/photo/selfie.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/form.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/styles/footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/footer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/styles/gallery.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/gallery.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/styles/selfie.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/selfie.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +91,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/scripts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/styles" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -84,19 +106,19 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/scripts" />
-      <recent name="$PROJECT_DIR$/public/images" />
-      <recent name="$PROJECT_DIR$/application" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/application/controllers" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/application/lib" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/public/scripts" />
       <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/application/views/layouts" />
-      <recent name="$PROJECT_DIR$/application/views/photo" />
-      <recent name="$PROJECT_DIR$/application/config" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/styles" />
+      <recent name="$PROJECT_DIR$/public/images/frame" />
+      <recent name="$PROJECT_DIR$/config" />
+      <recent name="$PROJECT_DIR$/public/scripts" />
+      <recent name="$PROJECT_DIR$/public/images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -217,7 +239,8 @@
       <workItem from="1571227253773" duration="601000" />
       <workItem from="1571242895715" duration="1309000" />
       <workItem from="1571297891750" duration="9982000" />
-      <workItem from="1571501332120" duration="19367000" />
+      <workItem from="1571501332120" duration="39890000" />
+      <workItem from="1571585480718" duration="10472000" />
     </task>
     <task id="LOCAL-00001" summary="finished with the routes">
       <created>1556783350401</created>
@@ -324,7 +347,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571506055881</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="fixed: comment html, &#10;add ajax_login and ajax_recovery,&#10;add css.">
+      <created>1571523408147</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1571523408147</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -375,7 +405,8 @@
     <MESSAGE value="add apply Stycker" />
     <MESSAGE value="add filter and pagination" />
     <MESSAGE value="fixed: recovery password, refresh gallery," />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed: recovery password, refresh gallery," />
+    <MESSAGE value="fixed: comment html, &#10;add ajax_login and ajax_recovery,&#10;add css." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed: comment html, &#10;add ajax_login and ajax_recovery,&#10;add css." />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>

@@ -4,8 +4,7 @@
 namespace application\core;
 
 
-class View
-{
+class View {
 
     public $path;
     public $layout = 'default';
@@ -14,7 +13,6 @@ class View
     public function __construct($route) {
         $this->route = $route;
         $this->path = $route['controller'] . '/' . $route['action'];
-        //echo "$this->path";
     }
 
     public function render($title, $vars = []) {
@@ -45,9 +43,5 @@ class View
 
     public function message($status, $message) {
         exit(json_encode(['status'  => $status, 'message' => $message]));
-}
-
-//    public function location($url) {
-//        exit(json_encode(['url'  => $url]));
-//    }
+    }
 }

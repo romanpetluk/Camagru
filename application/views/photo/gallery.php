@@ -1,5 +1,4 @@
 <?php foreach ($photo as $val): ?>
-<?php //var_dump($val);?><!-- <br>-->
 <img class="gallery__img" src="<?php echo $val['path'] ?>" alt="">
 <div class="gallery__container">
     <p>
@@ -8,7 +7,6 @@
     </p>
     <div class="gallery__likes">
         <span><?php echo 'Like: ' . $val['like'] ?></span>
-<!--        <button>Like</button>-->
         <form action='/photo/gallery/<?php echo $page['page'] ?>' method='post'>
             <input type="hidden" name="image_id" value="<?php echo $val['image_id'] ?>">
             <input type="submit" name="delete" value="like">

@@ -5,8 +5,8 @@
         </div>
         <div class="phone">
             <span>My phone</span>
-            <a href="tel:+380935756131" >
-                +380935756131
+            <a href="tel:+380935756130" >
+                +380935756130
             </a>
         </div>
         <div class="author">

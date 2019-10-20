@@ -82,22 +82,13 @@ class Photo extends Model {
         return $infoPage;
     }
 
-//    public function getFrame($page = 1) {
-//
-//        $frame = $this->db->row($sql);
-//        return($frame);
-//    }
-
-//    public function displayGallery() {
     public function getPhotoThisUser() {
 
         $params = [
             'user_id' => $_SESSION['account']['user_id'],
         ];
-//        return $this->db->row('SELECT * FROM `gallery` WHERE user_id = :user_id ORDER BY creation_date DESC', $params);
         return $this->db->row('SELECT * FROM `gallery` WHERE user_id = :user_id ORDER BY creation_date DESC', $params);
 
-//        return $this->db->row("SELECT * FROM `gallery` ORDER BY `user_id`");
     }
 
     public function checkLike($imageId) {
@@ -173,9 +164,6 @@ class Photo extends Model {
             $params = [
                 'image_id' => $val['image_id'],
             ];
-//            $sql = 'SELECT `comment` FROM `comments` ORDER BY comment_id DESC LIMIT 5';
-//            $data = $this->db->row($sql);
-//            $data = $this->db->row('SELECT `comment`, `login`, comment_id FROM `comments` WHERE image_id = :image_id', $params);
             $data = $this->db->row('SELECT * FROM `comments` WHERE image_id = :image_id', $params);
 
             $val['comment'] = $data;

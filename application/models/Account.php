@@ -57,20 +57,10 @@ class Account extends Model {
         return $this->db->column('SELECT user_id FROM accounts WHERE token = :token', $params);
     }
 
-//    public function send_mail($email, $headline, $text) {
-//
-//        $headers  = 'MIME-Version: 1.0' . "\r\n";
-//        $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-//        $headers .= 'From: <romantest31@gmail.com>' . "\r\n";
-//
-//        mail($email, $headline, $text, $headers);
-//    }
-//
     public function activate($token) {
         $params = [
             'token' => $token,
         ];
-//        $this->db->query('UPDATE accounts SET token = "" WHERE token = :token', $params);
         $this->db->query('UPDATE accounts SET status = 1, token = "" WHERE token = :token', $params);
     }
 

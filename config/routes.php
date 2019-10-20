@@ -8,11 +8,6 @@
             'action' => 'index',
         ],
 
-//        '' => [
-//            'controller' => 'photo',
-//            'action' => 'gallery',
-//        ],
-
         //AccountController
         'account/login' => [
             'controller' => 'account',
@@ -51,7 +46,6 @@
 
         //PhotoController
         'photo/gallery/([0-9]+)' => [
-//        'photo/gallery' => [
             'controller' => 'photo',
             'action' => 'gallery',
         ],

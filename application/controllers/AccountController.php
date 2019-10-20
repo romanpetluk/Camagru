@@ -70,7 +70,6 @@ class AccountController extends Controller {
 
         if (!empty($_POST)) {
 
-            //var_dump($_SESSION['account']);
             if (!$this->model->validate(['email', 'login'], $_POST)) {
                 $this->view->message('error', $this->model->error);
             }

@@ -1,10 +1,7 @@
 <?php
 
 namespace application\lib;
-
 use PDO;
-
-
 
 class Db
 {
@@ -13,12 +10,11 @@ class Db
 
     public function __construct() {
         try {
-            $config = require 'application/config/database.php';
-            require_once 'application/config/setup.php';
-            $this->db = new PDO('mysql:host=' . $config['host'] . ';dbname=' . '' . '', $config['user'], $config['password']);
-//            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->db->query('USE ' . $config['dbname']);
+            $config = require 'config/database.php';
+            $this->db = new PDO('mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'], $config['user'], $config['password']);
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
+            require_once 'config/setup.php';
             die("DB ERROR: " . $e->getMessage());
         }
     }
@@ -54,15 +50,3 @@ class Db
     }
 
 }
-
-//try {
-//    self::setConfig();
-//    self::$dbh = new PDO('mysql:host='.self::$config['host'], self::$config['username'],
-//        self::$config['password'], self::$config['options']);
-//    self::$dbh->exec("CREATE DATABASE IF NOT EXISTS ".self::$config['dbname'].";")
-//    or die(print_r(self::$dbh->errorInfo(), true));
-//
-//} catch (PDOException $e) {
-//    die("DB ERROR: ". $e->getMessage());
-//}
-//self::$dbh = null;

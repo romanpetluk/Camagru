@@ -1,1 +1,1 @@
-<?php header("Location: http://localhost:8200/photo/gallery/1"); ?>
+<?php header("Location: http://localhost:8200/photo/gallery/1");
