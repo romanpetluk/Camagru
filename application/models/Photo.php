@@ -4,6 +4,7 @@
 namespace application\models;
 
 use application\core\Model;
+use application\core\View;
 use application\lib\Email;
 
 
@@ -105,6 +106,13 @@ class Photo extends Model {
     }
 
     public function addLike($imageId) {
+
+        $params = [
+            'image_id' => $imageId,
+        ];
+        if (!$this->db->row('SELECT * FROM `gallery` WHERE image_id = :image_id', $params)) {
+            View::errorCode(404);
+        }
         $params = [
             'like_id' => null,
             'user_id' => $_SESSION['account']['user_id'],
@@ -123,7 +131,7 @@ class Photo extends Model {
                 $params = [
                     'like_id' => $val['like_id'],
                 ];
-                $this->db->row("DELETE FROM `likes` WHERE like_id = :like_id", $params);
+                $this->db->query('DELETE FROM `likes` WHERE like_id = :like_id', $params);
             }
         }
     }
@@ -141,6 +149,12 @@ class Photo extends Model {
     }
 
     public function addComment($imageId, $comment) {
+        $params = [
+            'image_id' => $imageId,
+        ];
+        if (!$this->db->row('SELECT * FROM `gallery` WHERE image_id = :image_id', $params)) {
+            View::errorCode(404);
+        }
         $comment = htmlspecialchars($comment);
         $params = [
             'comment_id' => null,
@@ -184,12 +198,12 @@ class Photo extends Model {
 
             'image_id' => $imageId,
         ];
-        $this->db->row("DELETE FROM `likes` WHERE image_id = :image_id", $params);
-        $this->db->row("DELETE FROM `comments` WHERE image_id = :image_id", $params);
+        $this->db->query("DELETE FROM `likes` WHERE image_id = :image_id", $params);
+        $this->db->query("DELETE FROM `comments` WHERE image_id = :image_id", $params);
         $params = [
             'path' => $path,
         ];
-        $this->db->row("DELETE FROM `gallery` WHERE path = :path", $params);
+        $this->db->query("DELETE FROM `gallery` WHERE path = :path", $params);
 
         $path = trim($path, '/');
         if (file_exists($path)) {
